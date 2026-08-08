@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Printing, Document Upload & LIC Services - Shree Shyam Enterprises</title>
+  
+  <meta name="description" content="Upload PDF/Photo for printing, Xerox, Passport Photos, Laminated PVC Aadhaar Card & Official LIC Agent Services (Kiran Devi Code: 01649/53H) at Barkagaon Devriya Road.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animations.css">
+
+  <style>
+    .upload-dropzone {
+      border: 2px dashed var(--primary-blue-light);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      background: var(--bg-tertiary);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      position: relative;
+    }
+    .upload-dropzone:hover, .upload-dropzone.dragover {
+      background: rgba(37, 99, 235, 0.08);
+      border-color: var(--accent-gold);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Info Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-container">
+      <div class="top-info">
+        <span><i class="fas fa-map-marker-alt"></i> Store: Barkagaon Devriya Road, In front of Tiwari Niwash Bhawan</span>
+        <span><i class="fas fa-phone-alt"></i> Call Store: <a href="tel:7352383419">7352383419</a></span>
+        <span><i class="fas fa-certificate"></i> MSME Govt Reg: UDYAM-BR-23-0126667</span>
+      </div>
+      <div class="top-actions">
+        <span class="font-hindi" style="color: var(--accent-gold-light); font-weight:700;">आपकी जरूरत, हमारा वादा</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="logo-brand">
+        <div class="logo-icon"><i class="fas fa-shopping-bag"></i></div>
+        <div class="logo-text">
+          <h1>SHREE SHYAM</h1>
+          <span>ENTERPRISES</span>
+        </div>
+      </a>
+
+      <div class="nav-search">
+        <div class="search-input-wrap">
+          <input type="text" id="header-search-input" placeholder="Search printing, photo, LIC services..." autocomplete="off">
+          <button class="search-btn" aria-label="Search"><i class="fas fa-search"></i></button>
+        </div>
+        <div id="header-search-results" class="search-results-dropdown"></div>
+      </div>
+
+      <nav id="nav-links" class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="products.html" class="nav-link">Products</a>
+        <a href="services.html" class="nav-link active">Services & LIC</a>
+        <a href="about.html" class="nav-link">About Us</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="admin.html" class="nav-link" style="color:var(--accent-gold);"><i class="fas fa-user-lock"></i> Admin</a>
+      </nav>
+
+      <div class="nav-controls">
+        <button id="theme-toggle-btn" class="icon-btn" aria-label="Toggle Theme"><i class="fas fa-moon"></i></button>
+        <button id="cart-icon-btn" class="icon-btn" aria-label="View Cart">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-badge">0</span>
+        </button>
+        <button id="hamburger-btn" class="hamburger-btn" aria-label="Open Mobile Menu"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Header Banner -->
+  <section style="background: linear-gradient(135deg, var(--primary-blue-dark), var(--primary-blue)); color:#FFF; padding: 3.5rem 0;">
+    <div class="container text-center">
+      <div style="display:inline-flex; align-items:center; gap:0.5rem; background:rgba(245,158,11,0.2); color:var(--accent-gold-light); padding:0.4rem 1.2rem; border-radius:var(--radius-full); font-weight:700; font-size:0.85rem; margin-bottom:1rem;">
+        <i class="fas fa-building"></i> Govt. MSME Approved Micro Enterprise (Reg No: UDYAM-BR-23-0126667)
+      </div>
+      <h1 style="font-family:var(--font-poppins); font-size:2.6rem; font-weight:800;">Digital Printing & LIC Services</h1>
+      <p style="color:#CBD5E1; font-size:1.1rem; max-width:700px; margin:0.75rem auto 0 auto;">Upload your documents/photos online for instant printing, Xerox, Passport Photos, or consult for LIC Policies.</p>
+    </div>
+  </section>
+
+  <!-- NEW FEATURE: DOCUMENT & PHOTO PRINTING UPLOAD SECTION -->
+  <section class="section-padding" style="background:var(--bg-secondary);">
+    <div class="container" style="max-width:900px;">
+      <div class="section-header text-center reveal-on-scroll">
+        <span class="section-subtitle"><i class="fas fa-cloud-arrow-up"></i> Instant Document Upload</span>
+        <h2 class="section-title">Upload File for Photo Printing & Xerox</h2>
+        <p class="section-desc">Select your document (PDF, JPG, PNG, DOCX) and customize print options to send directly via WhatsApp.</p>
+      </div>
+
+      <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:2rem; box-shadow:var(--shadow-md);">
+        
+        <!-- Drag & Drop Zone -->
+        <div id="print-dropzone" class="upload-dropzone" onclick="document.getElementById('print-file-input').click()">
+          <input type="file" id="print-file-input" accept=".pdf,.jpg,.jpeg,.png,.docx" style="display:none;" onchange="handleFileSelected(this.files[0])">
+          <i class="fas fa-file-circle-plus" style="font-size:3.5rem; color:var(--primary-blue-light); margin-bottom:1rem;"></i>
+          <h3 style="font-size:1.25rem; font-weight:800;">Click or Drag & Drop File Here</h3>
+          <p style="color:var(--text-muted); font-size:0.9rem; margin-top:0.3rem;">Supports PDF documents, Passport Photos (JPG/PNG), Word files up to 25MB</p>
+        </div>
+
+        <!-- Selected File Preview Bar -->
+        <div id="file-preview-bar" style="display:none; background:var(--bg-tertiary); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1rem; margin-top:1.25rem; align-items:center; justify-content:space-between;">
+          <div style="display:flex; align-items:center; gap:1rem;">
+            <i id="file-icon-type" class="fas fa-file-pdf" style="font-size:2rem; color:var(--danger-red);"></i>
+            <div>
+              <strong id="file-name-label" style="display:block; font-size:0.95rem;">document.pdf</strong>
+              <span id="file-size-label" style="font-size:0.8rem; color:var(--text-muted);">1.2 MB</span>
+            </div>
+          </div>
+          <button type="button" onclick="clearSelectedFile()" style="color:var(--danger-red); font-weight:700; font-size:0.9rem;"><i class="fas fa-trash"></i> Change File</button>
+        </div>
+
+        <!-- Print Specs Customizer Form -->
+        <form id="print-spec-form" onsubmit="sendPrintRequestViaWhatsApp(event)" style="margin-top:1.5rem;">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-bottom:1.25rem;">
+            <div>
+              <label style="font-weight:700; display:block; margin-bottom:0.4rem;">Select Print Type *</label>
+              <select id="print-service-type" required style="width:100%; padding:0.7rem 1rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main); font-weight:600;">
+                <option value="B/W Xerox & Document Print (₹2 / page)">B/W Xerox & Document Print (₹2 / page)</option>
+                <option value="Full Color Laser Print (₹5 - ₹10 / page)">Full Color Laser Print (₹5 - ₹10 / page)</option>
+                <option value="HD Passport Photo Print (₹50 for 8 copies)">HD Passport Photo Print (₹50 for 8 copies)</option>
+                <option value="HD Photo Print A4 Glossy (₹25 / photo)">HD Photo Print A4 Glossy (₹25 / photo)</option>
+                <option value="Waterproof PVC Smart Card Aadhaar (₹60 / card)">Waterproof PVC Smart Card Aadhaar (₹60 / card)</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-weight:700; display:block; margin-bottom:0.4rem;">Number of Copies / Quantity *</label>
+              <input type="number" id="print-copies" value="1" min="1" required style="width:100%; padding:0.7rem 1rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main); font-weight:700;">
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-bottom:1.25rem;">
+            <div>
+              <label style="font-weight:700; display:block; margin-bottom:0.4rem;">Paper & Print Mode</label>
+              <select id="print-paper-mode" style="width:100%; padding:0.7rem 1rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main); font-weight:600;">
+                <option value="Single Sided (A4)">Single Sided (A4)</option>
+                <option value="Double Sided / Both Sides (A4)">Double Sided / Both Sides (A4)</option>
+                <option value="Glossy Photo Paper (230 GSM)">Glossy Photo Paper (230 GSM)</option>
+                <option value="Laminated PVC Plastic Card">Laminated PVC Plastic Card</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-weight:700; display:block; margin-bottom:0.4rem;">Your Mobile Number *</label>
+              <input type="tel" id="print-cust-phone" required placeholder="10-digit mobile number" style="width:100%; padding:0.7rem 1rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main);">
+            </div>
+          </div>
+
+          <div style="margin-bottom:1.5rem;">
+            <label style="font-weight:700; display:block; margin-bottom:0.4rem;">Special Instructions / Page Range</label>
+            <input type="text" id="print-notes" placeholder="e.g. Print pages 1 to 5 only, or adjust photo brightness" style="width:100%; padding:0.7rem 1rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main);">
+          </div>
+
+          <button type="submit" class="btn btn-whatsapp btn-lg" style="width:100%; justify-content:center;"><i class="fab fa-whatsapp"></i> Send Document & Print Order to WhatsApp</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Digital Services Grid -->
+  <section class="section-padding" style="background:var(--bg-primary);">
+    <div class="container">
+      <div class="section-header text-center reveal-on-scroll">
+        <span class="section-subtitle">High-Precision Printing</span>
+        <h2 class="section-title">Digital & Document Printing Services</h2>
+        <p class="section-desc">State of the art laser machines for fast, high definition printouts and smart card solutions.</p>
+      </div>
+
+      <div id="digital-services-grid" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap:2rem;">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Dedicated LIC Agent Portal -->
+  <section id="lic-section" class="section-padding" style="background: linear-gradient(135deg, var(--primary-blue-dark), #0B1329); color:#FFF;">
+    <div class="container">
+      <div class="section-header text-center reveal-on-scroll">
+        <span class="section-subtitle" style="background:rgba(245,158,11,0.2); color:var(--accent-gold-light);">Official LIC Agent Portal</span>
+        <h2 class="section-title" style="color:#FFF;">Life Insurance Corporation of India (LIC)</h2>
+        <p class="section-desc" style="color:#CBD5E1;">Your trusted LIC Advisor for financial protection, pension, retirement funds, and emergency policy loan assistance.</p>
+      </div>
+
+      <!-- Agent Profile Card -->
+      <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); border-radius:var(--radius-lg); padding:2.5rem; margin-bottom:3rem; backdrop-filter:blur(8px);" class="reveal-on-scroll">
+        <div style="display:grid; grid-template-columns: 1fr 2fr; gap:2.5rem; align-items:center;">
+          <div style="text-align:center;">
+            <div style="width:140px; height:140px; border-radius:50%; background:linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light)); display:flex; align-items:center; justify-content:center; margin:0 auto 1rem auto; font-size:4rem; color:#0F172A; box-shadow:var(--shadow-gold);">
+              <i class="fas fa-user-shield"></i>
+            </div>
+            <h3 style="font-size:1.6rem; font-weight:800; font-family:var(--font-poppins);">Kiran Devi</h3>
+            <span style="color:var(--accent-gold-light); font-weight:700; font-size:1rem; display:block; margin-top:0.2rem;">Authorized LIC Agent</span>
+            <span style="background:rgba(245,158,11,0.2); color:var(--accent-gold-light); padding:0.3rem 0.8rem; border-radius:var(--radius-full); font-size:0.85rem; font-weight:800; display:inline-block; margin-top:0.5rem;">Agency Code: 01649/53H</span>
+          </div>
+          <div>
+            <h4 style="font-size:1.3rem; font-weight:700; color:var(--accent-gold-light); margin-bottom:1rem;">Official Agent Details & Office Address:</h4>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; font-size:0.95rem;">
+              <div><strong style="color:#94A3B8;">LIC Branch Office:</strong> Motipur Branch, Muzaffarpur</div>
+              <div><strong style="color:#94A3B8;">Main Shop Store:</strong> Barkagaon Devriya Road (In front of Tiwari Niwash Bhawan)</div>
+              <div><strong style="color:#94A3B8;">Direct Phone:</strong> <a href="tel:7254931284" style="color:var(--accent-gold-light); font-weight:700;">7254931284</a></div>
+              <div><strong style="color:#94A3B8;">WhatsApp Helpline:</strong> <a href="https://wa.me/917254931284" style="color:#25D366; font-weight:700;" target="_blank">7254931284</a></div>
+              <div style="grid-column: 1 / -1;"><strong style="color:#94A3B8;">Email Address:</strong> keeran01649@gmail.com</div>
+            </div>
+            <div style="margin-top:1.5rem; display:flex; gap:1rem; flex-wrap:wrap;">
+              <a href="https://wa.me/917254931284?text=Hello%20Kiran%20Devi%20ji,%20I%20want%20to%20consult%20for%20a%20new%20LIC%20Policy." class="btn btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+              <a href="tel:7254931284" class="btn btn-gold"><i class="fas fa-phone-alt"></i> Call LIC Helpline</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LIC Services Offered -->
+      <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:1.5rem;" id="lic-services-grid">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col-about">
+          <h3>SHREE SHYAM ENTERPRISES</h3>
+          <p class="font-hindi" style="color:var(--accent-gold); font-size:1.1rem; font-weight:700;">"आपकी जरूरत, हमारा वादा"</p>
+          <p style="font-size:0.85rem; color:#94A3B8;">Govt MSME Reg No: UDYAM-BR-23-0126667</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="services.html">Services & LIC</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="admin.html">Admin Panel</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Locations</h4>
+          <ul class="footer-links">
+            <li><strong>Store:</strong> Barkagaon Devriya Road (In front of Tiwari Niwash Bhawan)</li>
+            <li><strong>LIC Office:</strong> Motipur Branch, Muzaffarpur</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact Info</h4>
+          <ul class="footer-links">
+            <li>Owner: Mr. Kaushal Tiwari (7352383419)</li>
+            <li>LIC Agent: Kiran Devi (7254931284)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Shree Shyam Enterprises. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Slide Cart Drawer -->
+  <div id="cart-drawer-overlay" class="cart-drawer-overlay"></div>
+  <aside id="cart-drawer" class="cart-drawer">
+    <div class="cart-drawer-header">
+      <h3><i class="fas fa-shopping-basket" style="color:var(--primary-blue-light);"></i> Your Shopping Cart</h3>
+      <button id="close-drawer-btn" class="close-drawer-btn" aria-label="Close Cart"><i class="fas fa-times"></i></button>
+    </div>
+    <div id="cart-drawer-items" class="cart-drawer-body"></div>
+    <div class="cart-drawer-footer">
+      <div class="cart-summary-row cart-summary-total">
+        <span>Subtotal Amount:</span>
+        <span id="cart-drawer-subtotal">₹0</span>
+      </div>
+      <div class="cart-drawer-actions">
+        <a href="cart.html" class="btn btn-outline">View Full Cart</a>
+        <a href="checkout.html" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> Checkout</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Floating Buttons -->
+  <div class="floating-actions">
+    <a href="https://wa.me/917352383419" class="float-btn float-whatsapp" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    <a href="tel:7352383419" class="float-btn float-call" aria-label="Call Store"><i class="fas fa-phone-alt"></i></a>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/products.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/animation.js"></script>
+
+  <script>
+    let selectedPrintFile = null;
+
+    function handleFileSelected(file) {
+      if (!file) return;
+      selectedPrintFile = file;
+      const previewBar = document.getElementById('file-preview-bar');
+      const nameLabel = document.getElementById('file-name-label');
+      const sizeLabel = document.getElementById('file-size-label');
+      const icon = document.getElementById('file-icon-type');
+
+      if (previewBar && nameLabel && sizeLabel) {
+        nameLabel.textContent = file.name;
+        sizeLabel.textContent = (file.size / (1024 * 1024)).toFixed(2) + ' MB';
+        
+        if (file.name.endsWith('.pdf')) icon.className = 'fas fa-file-pdf';
+        else if (file.name.match(/\.(jpg|jpeg|png)$/i)) icon.className = 'fas fa-file-image';
+        else icon.className = 'fas fa-file-word';
+
+        previewBar.style.display = 'flex';
+      }
+    }
+
+    function clearSelectedFile() {
+      selectedPrintFile = null;
+      document.getElementById('file-preview-bar').style.display = 'none';
+      document.getElementById('print-file-input').value = '';
+    }
+
+    function sendPrintRequestViaWhatsApp(e) {
+      e.preventDefault();
+      const service = document.getElementById('print-service-type').value;
+      const copies = document.getElementById('print-copies').value;
+      const mode = document.getElementById('print-paper-mode').value;
+      const phone = document.getElementById('print-cust-phone').value;
+      const notes = document.getElementById('print-notes').value;
+
+      let msg = `🖨️ *PRINT & PHOTOCOPY ORDER - SHREE SHYAM ENTERPRISES*\n`;
+      msg += `===================================\n`;
+      msg += `• *Service Type:* ${service}\n`;
+      msg += `• *Copies / Quantity:* ${copies}\n`;
+      msg += `• *Paper & Print Mode:* ${mode}\n`;
+      msg += `• *Customer Phone:* ${phone}\n`;
+      if (selectedPrintFile) {
+        msg += `• *Attached File Name:* ${selectedPrintFile.name} (${(selectedPrintFile.size / (1024 * 1024)).toFixed(2)} MB)\n`;
+      }
+      if (notes) msg += `• *Special Instructions:* ${notes}\n`;
+      msg += `===================================\n`;
+      msg += `*Please attach your document/photo in this chat window!*`;
+
+      window.open(`https://wa.me/917352383419?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const res = await fetch('data/services.json');
+        const data = await res.json();
+
+        // Render Digital Services Grid
+        const digiGrid = document.getElementById('digital-services-grid');
+        if (digiGrid) {
+          digiGrid.innerHTML = data.digitalServices.map(s => `
+            <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-lg); overflow:hidden; display:flex; flex-direction:column; box-shadow:var(--shadow-sm); transition:transform 0.3s ease;" class="reveal-on-scroll">
+              <img src="${s.image}" alt="${s.title}" style="height:180px; width:100%; object-fit:cover;">
+              <div style="padding:1.5rem; flex:1; display:flex; flex-direction:column; justify-between;">
+                <div>
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                    <h3 style="font-size:1.2rem; font-weight:700;">${s.title}</h3>
+                    <span style="background:rgba(37,99,235,0.1); color:var(--primary-blue-light); padding:0.2rem 0.6rem; border-radius:var(--radius-sm); font-weight:700; font-size:0.85rem;">${s.price}</span>
+                  </div>
+                  <div style="font-family:var(--font-hindi); color:var(--text-muted); font-size:0.95rem; margin-bottom:0.75rem;">${s.titleHindi || ''}</div>
+                  <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:1rem;">${s.description}</p>
+                </div>
+                <div style="border-top:1px solid var(--border-color); padding-top:1rem; margin-top:auto;">
+                  <a href="#print-dropzone" class="btn btn-primary btn-sm" style="width:100%; justify-content:center;"><i class="fas fa-upload"></i> Upload File & Order</a>
+                </div>
+              </div>
+            </div>
+          `).join('');
+        }
+
+        // Render LIC Services Grid
+        const licGrid = document.getElementById('lic-services-grid');
+        if (licGrid) {
+          licGrid.innerHTML = data.licAgentDetails.services.map(s => `
+            <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); padding:1.5rem; border-radius:var(--radius-md);" class="reveal-on-scroll">
+              <i class="fas fa-shield-alt" style="font-size:2rem; color:var(--accent-gold); margin-bottom:0.75rem;"></i>
+              <h4 style="font-size:1.15rem; font-weight:700; color:#FFF; margin-bottom:0.25rem;">${s.title}</h4>
+              <div style="font-family:var(--font-hindi); color:var(--accent-gold-light); font-size:0.9rem; margin-bottom:0.6rem;">${s.titleHindi}</div>
+              <p style="font-size:0.88rem; color:#CBD5E1;">${s.description}</p>
+            </div>
+          `).join('');
+        }
+      } catch (err) {
+        console.error('Error loading services JSON:', err);
+      }
+    });
+  </script>
+</body>
+</html>

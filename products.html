@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Products & Shop Catalog - Shree Shyam Enterprises</title>
+  
+  <meta name="description" content="Browse our complete catalog of Groceries, Snacks, Drinks, Biscuits, Stationery, Photo Printing, and Household items at Shree Shyam Enterprises, Barkagaon Devriya Road.">
+  <link rel="canonical" href="https://shreeshyamenterprises.com/products.html">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animations.css">
+
+  <style>
+    .pill-btn {
+      padding: 0.5rem 1.25rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-full);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all var(--transition-fast);
+    }
+    .pill-btn.active, .pill-btn:hover {
+      background: var(--primary-blue-light);
+      color: #FFF;
+      border-color: var(--primary-blue-light);
+    }
+    .pills-scroll-wrap {
+      display: flex;
+      gap: 0.75rem;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+      margin-bottom: 2rem;
+      scrollbar-width: thin;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Info Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-container">
+      <div class="top-info">
+        <span><i class="fas fa-map-marker-alt"></i> Store: Barkagaon Devriya Road, In front of Tiwari Niwash Bhawan</span>
+        <span><i class="fas fa-phone-alt"></i> Call Store: <a href="tel:7352383419">7352383419</a></span>
+        <span><i class="fas fa-certificate"></i> MSME Govt Reg: UDYAM-BR-23-0126667</span>
+      </div>
+      <div class="top-actions">
+        <span class="font-hindi" style="color: var(--accent-gold-light); font-weight:700;">आपकी जरूरत, हमारा वादा</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="logo-brand">
+        <div class="logo-icon"><i class="fas fa-shopping-bag"></i></div>
+        <div class="logo-text">
+          <h1>SHREE SHYAM</h1>
+          <span>ENTERPRISES</span>
+        </div>
+      </a>
+
+      <div class="nav-search">
+        <div class="search-input-wrap">
+          <input type="text" id="header-search-input" placeholder="Search groceries, snacks, stationery..." autocomplete="off">
+          <button class="search-btn" aria-label="Search"><i class="fas fa-search"></i></button>
+        </div>
+        <div id="header-search-results" class="search-results-dropdown"></div>
+      </div>
+
+      <nav id="nav-links" class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="products.html" class="nav-link active">Products</a>
+        <a href="services.html" class="nav-link">Services & LIC</a>
+        <a href="about.html" class="nav-link">About Us</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="admin.html" class="nav-link" style="color:var(--accent-gold);"><i class="fas fa-user-lock"></i> Admin</a>
+      </nav>
+
+      <div class="nav-controls">
+        <button id="theme-toggle-btn" class="icon-btn" aria-label="Toggle Theme"><i class="fas fa-moon"></i></button>
+        <button id="cart-icon-btn" class="icon-btn" aria-label="View Cart">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-badge">0</span>
+        </button>
+        <button id="hamburger-btn" class="hamburger-btn" aria-label="Open Mobile Menu"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section style="background: linear-gradient(135deg, var(--primary-blue-dark), var(--primary-blue)); color:#FFF; padding: 3rem 0;">
+    <div class="container text-center">
+      <h1 style="font-family:var(--font-poppins); font-size:2.5rem; font-weight:800;">Our Complete Catalog</h1>
+      <p style="color:#E2E8F0; font-size:1.1rem; max-width:600px; margin:0.5rem auto 0 auto;">Shop groceries, beverages, snacks, stationery, and digital services with instant WhatsApp ordering.</p>
+    </div>
+  </section>
+
+  <!-- Products Catalog Section -->
+  <section class="section-padding" style="background:var(--bg-primary);">
+    <div class="container">
+      
+      <!-- Category Pills Horizontal Bar -->
+      <div id="category-pills-container" class="pills-scroll-wrap">
+        <!-- Rendered by filter.js -->
+      </div>
+
+      <!-- Controls & Filter Bar -->
+      <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1.25rem; margin-bottom:2rem; display:flex; flex-wrap:wrap; gap:1.5rem; align-items:center; justify-content:space-between;">
+        
+        <div style="flex:1; min-width:250px;">
+          <input type="text" id="catalog-search-input" placeholder="Filter by name or brand..." style="width:100%; padding:0.6rem 1rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main);">
+        </div>
+
+        <div style="display:flex; align-items:center; gap:0.75rem; min-width:220px;">
+          <label style="font-size:0.85rem; font-weight:700;">Max Price:</label>
+          <input type="range" id="price-range-input" min="10" max="1000" step="10" value="1000" style="flex:1;">
+          <span id="price-range-val" style="font-weight:700; color:var(--primary-blue-light); font-size:0.9rem;">₹1000</span>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:0.75rem;">
+          <label style="font-size:0.85rem; font-weight:700;">Sort By:</label>
+          <select id="sort-select" style="padding:0.6rem 1rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main); font-weight:600; cursor:pointer;">
+            <option value="featured">Featured / Best Match</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="rating">Highest Rated</option>
+            <option value="newest">Newest Additions</option>
+          </select>
+        </div>
+
+        <button class="btn btn-outline btn-sm" onclick="resetCatalogFilters()"><i class="fas fa-undo"></i> Reset Filters</button>
+      </div>
+
+      <!-- Result Counter -->
+      <div style="margin-bottom:1.5rem; display:flex; justify-content:space-between; align-items:center;">
+        <span id="catalog-results-count" style="font-weight:700; color:var(--text-muted); font-size:0.95rem;">Showing products...</span>
+      </div>
+
+      <!-- Products Grid -->
+      <div id="catalog-products-grid" class="products-grid">
+        <!-- Products populated by filter.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col-about">
+          <h3>SHREE SHYAM ENTERPRISES</h3>
+          <p class="font-hindi" style="color:var(--accent-gold); font-size:1.1rem; font-weight:700;">"आपकी जरूरत, हमारा वादा"</p>
+          <p style="font-size:0.85rem; color:#94A3B8;">Govt MSME Reg No: UDYAM-BR-23-0126667</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="services.html">Services & LIC</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="admin.html">Admin Panel</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Store Address</h4>
+          <ul class="footer-links">
+            <li>Barkagaon Devriya Road, In front of Tiwari Niwash Bhawan, Muzaffarpur</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <ul class="footer-links">
+            <li>Owner: Mr. Kaushal Tiwari (7352383419)</li>
+            <li>LIC Agent: Kiran Devi (7254931284)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Shree Shyam Enterprises. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Slide Cart Drawer -->
+  <div id="cart-drawer-overlay" class="cart-drawer-overlay"></div>
+  <aside id="cart-drawer" class="cart-drawer">
+    <div class="cart-drawer-header">
+      <h3><i class="fas fa-shopping-basket" style="color:var(--primary-blue-light);"></i> Your Shopping Cart</h3>
+      <button id="close-drawer-btn" class="close-drawer-btn" aria-label="Close Cart"><i class="fas fa-times"></i></button>
+    </div>
+    <div id="cart-drawer-items" class="cart-drawer-body"></div>
+    <div class="cart-drawer-footer">
+      <div class="cart-summary-row cart-summary-total">
+        <span>Subtotal Amount:</span>
+        <span id="cart-drawer-subtotal">₹0</span>
+      </div>
+      <div class="cart-drawer-actions">
+        <a href="cart.html" class="btn btn-outline">View Full Cart</a>
+        <a href="checkout.html" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> Checkout</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Floating Buttons -->
+  <div class="floating-actions">
+    <a href="https://wa.me/917352383419" class="float-btn float-whatsapp" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    <a href="tel:7352383419" class="float-btn float-call" aria-label="Call Store"><i class="fas fa-phone-alt"></i></a>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/products.js"></script>
+  <script src="js/filter.js"></script>
+  <script src="js/search.js"></script>
+</body>
+</html>

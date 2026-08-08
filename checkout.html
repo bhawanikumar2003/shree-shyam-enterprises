@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout & WhatsApp Order - Shree Shyam Enterprises</title>
+  
+  <meta name="description" content="Complete your delivery address and instant WhatsApp checkout for Shree Shyam Enterprises, Barkagaon Devriya Road.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+
+  <!-- Top Info Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-container">
+      <div class="top-info">
+        <span><i class="fas fa-map-marker-alt"></i> Store: Barkagaon Devriya Road, In front of Tiwari Niwash Bhawan</span>
+        <span><i class="fas fa-phone-alt"></i> Store: <a href="tel:7352383419">7352383419</a></span>
+        <span><i class="fas fa-certificate"></i> MSME Govt Reg: UDYAM-BR-23-0126667</span>
+      </div>
+      <div class="top-actions">
+        <span class="font-hindi" style="color: var(--accent-gold-light); font-weight:700;">आपकी जरूरत, हमारा वादा</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="logo-brand">
+        <div class="logo-icon"><i class="fas fa-shopping-bag"></i></div>
+        <div class="logo-text">
+          <h1>SHREE SHYAM</h1>
+          <span>ENTERPRISES</span>
+        </div>
+      </a>
+
+      <nav id="nav-links" class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="products.html" class="nav-link">Products</a>
+        <a href="services.html" class="nav-link">Services & LIC</a>
+        <a href="about.html" class="nav-link">About Us</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="admin.html" class="nav-link" style="color:var(--accent-gold);"><i class="fas fa-user-lock"></i> Admin</a>
+      </nav>
+
+      <div class="nav-controls">
+        <button id="theme-toggle-btn" class="icon-btn" aria-label="Toggle Theme"><i class="fas fa-moon"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Header Banner -->
+  <section style="background: linear-gradient(135deg, var(--primary-blue-dark), var(--primary-blue)); color:#FFF; padding: 2.5rem 0;">
+    <div class="container text-center">
+      <h1 style="font-family:var(--font-poppins); font-size:2.2rem; font-weight:800;"><i class="fab fa-whatsapp"></i> WhatsApp Order Checkout</h1>
+      <p style="color:#CBD5E1; margin-top:0.3rem;">No online payment required. Your structured order will be sent directly to our shop WhatsApp.</p>
+    </div>
+  </section>
+
+  <!-- Checkout Content Section -->
+  <section class="section-padding" style="background:var(--bg-primary);">
+    <div class="container">
+      <div style="display:grid; grid-template-columns: 3fr 2fr; gap:2.5rem;">
+        
+        <!-- Form Area -->
+        <div>
+          <form id="checkout-form" style="background:var(--bg-card); border:1px solid var(--border-color); padding:2rem; border-radius:var(--radius-lg); box-shadow:var(--shadow-sm);">
+            <h3 style="font-size:1.3rem; font-weight:800; border-bottom:1px solid var(--border-color); padding-bottom:0.75rem; margin-bottom:1.5rem;">
+              <i class="fas fa-user-check" style="color:var(--primary-blue-light);"></i> Customer & Delivery Details
+            </h3>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-bottom:1.25rem;">
+              <div>
+                <label style="font-weight:700; display:block; margin-bottom:0.4rem;">Full Name *</label>
+                <input type="text" id="cust-name" required placeholder="e.g. Ramesh Kumar" style="width:100%; padding:0.7rem 1rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main);">
+              </div>
+              <div>
+                <label style="font-weight:700; display:block; margin-bottom:0.4rem;">WhatsApp Mobile Number *</label>
+                <input type="tel" id="cust-phone" required placeholder="10-digit mobile number" style="width:100%; padding:0.7rem 1rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main);">
+              </div>
+            </div>
+
+            <div style="margin-bottom:1.25rem;">
+              <label style="font-weight:700; display:block; margin-bottom:0.4rem;">Complete Delivery Address *</label>
+              <textarea id="cust-address" required rows="3" placeholder="House no, Street name, Village / Area in Barkagaon Devriya Road..." style="width:100%; padding:0.7rem 1rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main); font-family:inherit;"></textarea>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-bottom:1.25rem;">
+              <div>
+                <label style="font-weight:700; display:block; margin-bottom:0.4rem;">PIN Code *</label>
+                <input type="text" id="cust-pin" required value="843109" style="width:100%; padding:0.7rem 1rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main);">
+              </div>
+              <div>
+                <label style="font-weight:700; display:block; margin-bottom:0.4rem;">Nearby Landmark</label>
+                <input type="text" id="cust-landmark" placeholder="Near Tiwari Niwash Bhawan / School" style="width:100%; padding:0.7rem 1rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main);">
+              </div>
+            </div>
+
+            <div style="margin-bottom:1.25rem;">
+              <label style="font-weight:700; display:block; margin-bottom:0.4rem;">Preferred Delivery Slot</label>
+              <select id="cust-slot" style="width:100%; padding:0.7rem 1rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main); font-weight:600;">
+                <option value="Instant Delivery (Within 30 Mins)">Instant Delivery (Within 30 Mins)</option>
+                <option value="Morning Slot (9:00 AM - 12:00 PM)">Morning Slot (9:00 AM - 12:00 PM)</option>
+                <option value="Evening Slot (4:00 PM - 8:00 PM)">Evening Slot (4:00 PM - 8:00 PM)</option>
+              </select>
+            </div>
+
+            <div style="margin-bottom:2rem;">
+              <label style="font-weight:700; display:block; margin-bottom:0.4rem;">Order Notes (Optional)</label>
+              <input type="text" id="cust-note" placeholder="Special delivery instructions or brand preference..." style="width:100%; padding:0.7rem 1rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main);">
+            </div>
+
+            <button type="submit" class="btn btn-whatsapp btn-lg" style="width:100%; justify-content:center;"><i class="fab fa-whatsapp"></i> Place Order via WhatsApp</button>
+          </form>
+        </div>
+
+        <!-- Order Summary Side Panel -->
+        <div>
+          <div style="background:var(--bg-card); border:1px solid var(--border-color); padding:1.75rem; border-radius:var(--radius-lg); position:sticky; top:100px; box-shadow:var(--shadow-md);">
+            <h3 style="font-size:1.25rem; font-weight:800; border-bottom:1px solid var(--border-color); padding-bottom:0.75rem; margin-bottom:1rem;">Order Items Summary</h3>
+            
+            <div id="checkout-items-summary" style="max-height:280px; overflow-y:auto; margin-bottom:1rem;">
+              <!-- Rendered by checkout.js -->
+            </div>
+
+            <div style="border-top:1px solid var(--border-color); padding-top:1rem;">
+              <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem; font-size:0.9rem;">
+                <span>Subtotal:</span>
+                <span id="checkout-subtotal">₹0</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem; font-size:0.9rem;">
+                <span>Delivery Charge:</span>
+                <span id="checkout-delivery" style="color:var(--success-green);">FREE</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:baseline; margin-top:1rem; border-top:1px solid var(--border-color); padding-top:0.75rem;">
+                <span style="font-weight:800; font-size:1.1rem;">Total Amount:</span>
+                <span id="checkout-grand-total" style="font-weight:900; font-size:1.5rem; color:var(--primary-blue-light);">₹0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container text-center">
+      <p>&copy; 2026 Shree Shyam Enterprises. Barkagaon Devriya Road, Muzaffarpur. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/checkout.js"></script>
+</body>
+</html>

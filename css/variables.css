@@ -1,0 +1,91 @@
+/* ==========================================================================
+   SHREE SHYAM ENTERPRISES - DESIGN SYSTEM & VARIABLES (variables.css)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Mukta:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+  /* Core Brand Colors */
+  --primary-blue: #1E3A8A;
+  --primary-blue-light: #2563EB;
+  --primary-blue-dark: #172554;
+  --accent-gold: #F59E0B;
+  --accent-gold-light: #FBBF24;
+  --accent-gold-dark: #B45309;
+  --accent-orange: #FF6B00;
+  --accent-orange-hover: #E05E00;
+  --success-green: #10B981;
+  --danger-red: #EF4444;
+  --info-cyan: #06B6D4;
+
+  /* Neutrals & Surfaces (Light Theme Default) */
+  --bg-primary: #F8FAFC;
+  --bg-secondary: #FFFFFF;
+  --bg-tertiary: #F1F5F9;
+  --bg-card: #FFFFFF;
+  --bg-glass: rgba(255, 255, 255, 0.75);
+  --bg-glass-card: rgba(255, 255, 255, 0.85);
+
+  --text-main: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #64748B;
+  --text-inverse: #FFFFFF;
+  --text-gold: #D97706;
+
+  --border-color: #E2E8F0;
+  --border-color-hover: #CBD5E1;
+  --border-glass: rgba(255, 255, 255, 0.4);
+
+  /* Shadows & Glassmorphism */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 10px 15px -3px rgba(30, 58, 138, 0.1), 0 4px 6px -2px rgba(30, 58, 138, 0.05);
+  --shadow-lg: 0 20px 25px -5px rgba(30, 58, 138, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-gold: 0 10px 20px -5px rgba(245, 158, 11, 0.3);
+  --backdrop-blur: blur(12px);
+
+  /* Typography */
+  --font-poppins: 'Poppins', system-ui, -apple-system, sans-serif;
+  --font-inter: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-hindi: 'Mukta', sans-serif;
+
+  /* Spacing Tokens */
+  --container-max-width: 1320px;
+  --header-height: 80px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+
+  /* Motion & Transitions */
+  --ease-fast: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 0.2s var(--ease-fast);
+  --transition-normal: 0.3s var(--ease-fast);
+  --transition-smooth: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Dark Theme Overrides */
+[data-theme="dark"] {
+  --bg-primary: #0B1329;
+  --bg-secondary: #111C3A;
+  --bg-tertiary: #19274D;
+  --bg-card: #142247;
+  --bg-glass: rgba(17, 28, 58, 0.85);
+  --bg-glass-card: rgba(20, 34, 71, 0.9);
+
+  --text-main: #F1F5F9;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  --text-inverse: #0F172A;
+  --text-gold: #FBBF24;
+
+  --border-color: #1E293B;
+  --border-color-hover: #334155;
+  --border-glass: rgba(255, 255, 255, 0.1);
+
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+  --shadow-gold: 0 10px 25px -5px rgba(245, 158, 11, 0.25);
+}

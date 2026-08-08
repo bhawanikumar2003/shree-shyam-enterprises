@@ -1,0 +1,393 @@
+[
+  {
+    "id": "prod-001",
+    "name": "Aashirvaad Shuddh Chakki Atta",
+    "nameHindi": "आशीर्वाद शुद्ध चक्की आटा 5 किग्रा",
+    "brand": "Aashirvaad",
+    "category": "groceries",
+    "unit": "5 kg",
+    "price": 245,
+    "mrp": 280,
+    "discount": "12.5% OFF",
+    "availability": "in-stock",
+    "stockCount": 45,
+    "rating": 4.8,
+    "reviewsCount": 128,
+    "featured": true,
+    "bestseller": true,
+    "images": [
+      "assets/products/grocery_atta.jpg",
+      "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=600&auto=format&fit=crop&q=80"
+    ],
+    "description": "Aashirvaad Whole Wheat Atta is made from the choicest grains, heavy on the palm, golden amber in colour and hard in bite. Ground in traditional stone chakki for soft rotis.",
+    "features": [
+      "100% Pure Whole Wheat",
+      "Traditional Stone Chakki Processed",
+      "Zero Maida / No Added Preservatives",
+      "Absorbs more water for softer rotis that stay soft longer"
+    ],
+    "specifications": {
+      "Dietary Preference": "Vegetarian",
+      "Shelf Life": "3 Months",
+      "Country of Origin": "India",
+      "Packaging Type": "Bag"
+    },
+    "variants": ["1 kg", "5 kg", "10 kg"]
+  },
+  {
+    "id": "prod-002",
+    "name": "Fortune Refined Sunflower Oil",
+    "nameHindi": "फॉर्च्यून रिफाइंड सनफ्लावर ऑयल 1 ली",
+    "brand": "Fortune",
+    "category": "groceries",
+    "unit": "1 Litre",
+    "price": 140,
+    "mrp": 165,
+    "discount": "15% OFF",
+    "availability": "in-stock",
+    "stockCount": 60,
+    "rating": 4.7,
+    "reviewsCount": 94,
+    "featured": true,
+    "bestseller": true,
+    "images": [
+      "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=600&auto=format&fit=crop&q=80"
+    ],
+    "description": "Fortune Refined Sunflower Oil is light, healthy, and easy to digest cooking oil rich in Vitamin E and Tocopherols that keep your heart healthy.",
+    "features": [
+      "Rich in Vitamin E and Omega-6",
+      "Light and easy to digest",
+      "High smoke point for crisp deep frying",
+      "Clear & pure triple refined quality"
+    ],
+    "specifications": {
+      "Type": "Refined Sunflower Oil",
+      "Dietary Preference": "Vegetarian",
+      "Shelf Life": "9 Months"
+    },
+    "variants": ["1 Litre Pouch", "1 Litre Bottle", "5 Litre Jar"]
+  },
+  {
+    "id": "prod-003",
+    "name": "Lay's Cream & Onion Chips",
+    "nameHindi": "लेज क्रीम एंड अनियन चिप्स",
+    "brand": "Lay's",
+    "category": "snacks",
+    "unit": "50g",
+    "price": 20,
+    "mrp": 20,
+    "discount": "MRP",
+    "availability": "in-stock",
+    "stockCount": 100,
+    "rating": 4.9,
+    "reviewsCount": 210,
+    "featured": true,
+    "bestseller": true,
+    "images": [
+      "https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=600&auto=format&fit=crop&q=80"
+    ],
+    "description": "Crispy potato chips infused with sweet cream and savory herb onion flavor. Perfect party snack for movie nights and evening tea.",
+    "features": [
+      "Made from farm-fresh selected potatoes",
+      "100% Vegetarian snack",
+      "Zero trans fat content",
+      "Sealed nitrogen pouch for ultimate freshness"
+    ],
+    "specifications": {
+      "Flavor": "American Style Cream & Onion",
+      "Net Weight": "50g"
+    },
+    "variants": ["20g", "50g", "90g Party Pack"]
+  },
+  {
+    "id": "prod-004",
+    "name": "Thums Up Soft Drink Bottle",
+    "nameHindi": "थम्स अप कोल्ड ड्रिंक 750 मि.ली.",
+    "brand": "Coca-Cola",
+    "category": "cold-drinks",
+    "unit": "750 ml",
+    "price": 40,
+    "mrp": 45,
+    "discount": "₹5 OFF",
+    "availability": "in-stock",
+    "stockCount": 35,
+    "rating": 4.8,
+    "reviewsCount": 150,
+    "featured": true,
+    "bestseller": true,
+    "images": [
+      "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=600&auto=format&fit=crop&q=80"
+    ],
+    "description": "Taste the Thunder with Thums Up's strong, fizzy carbonated cola taste. Best served chilled on hot afternoon days.",
+    "features": [
+      "Strong spicy carbonated taste",
+      "Best served chilled at 4°C",
+      "Recyclable PET bottle bottle",
+      "Refreshing energy boost"
+    ],
+    "specifications": {
+      "Volume": "750 ml",
+      "Type": "Carbonated Beverage"
+    },
+    "variants": ["250ml Can", "750ml Bottle", "1.25L Bottle", "2.25L Bottle"]
+  },
+  {
+    "id": "prod-005",
+    "name": "Britannia Good Day Butter Cookies",
+    "nameHindi": "ब्रिटानिया गुड डे बटर बिस्कुट",
+    "brand": "Britannia",
+    "category": "biscuits",
+    "unit": "200g Family Pack",
+    "price": 30,
+    "mrp": 35,
+    "discount": "14% OFF",
+    "availability": "in-stock",
+    "stockCount": 80,
+    "rating": 4.7,
+    "reviewsCount": 88,
+    "featured": false,
+    "bestseller": true,
+    "images": [
+      "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=600&auto=format&fit=crop&q=80"
+    ],
+    "description": "Rich butter baked cookies with smiley pattern design. Pair with hot chai or milk for a joyous tea break.",
+    "features": [
+      "Rich real butter aroma and crunchy texture",
+      "Signature smile design on every biscuit",
+      "Zero artificial trans fat",
+      "Hygienic multi-layer foil packing"
+    ],
+    "specifications": {
+      "Net Weight": "200g",
+      "Dietary Preference": "Vegetarian"
+    },
+    "variants": ["60g Small", "200g Family Pack", "600g Jumbo Tin"]
+  },
+  {
+    "id": "prod-006",
+    "name": "Classmate Long Book A4 Softcover",
+    "nameHindi": "क्लासमेट ए4 नोटबुक (240 पेज)",
+    "brand": "Classmate",
+    "category": "stationery",
+    "unit": "240 Pages Single Line",
+    "price": 75,
+    "mrp": 85,
+    "discount": "₹10 OFF",
+    "availability": "in-stock",
+    "stockCount": 120,
+    "rating": 4.9,
+    "reviewsCount": 160,
+    "featured": true,
+    "bestseller": true,
+    "images": [
+      "assets/products/stationery_notebook.jpg"
+    ],
+    "description": "Classmate Notebooks feature high brightness elemental chlorine-free paper with smooth surface ensuring neat handwriting for students and offices.",
+    "features": [
+      "240 Pages high GSM white paper",
+      "Elemental Chlorine-Free (ECF) eco-friendly",
+      "Includes fun trivia & schedule page on back",
+      "Durable softcover binding"
+    ],
+    "specifications": {
+      "Size": "A4 (29.7cm x 21cm)",
+      "Ruling": "Single Line Ruled",
+      "Page Count": "240 Pages"
+    },
+    "variants": ["Single Line", "Unruled", "Four Line", "Square Ruled"]
+  },
+  {
+    "id": "prod-007",
+    "name": "Dettol Antiseptic Soap Pack of 3",
+    "nameHindi": "डेटॉल एंटीसेप्टिक साबुन (3 का पैक)",
+    "brand": "Dettol",
+    "category": "personal-care",
+    "unit": "3 x 100g",
+    "price": 115,
+    "mrp": 135,
+    "discount": "15% OFF",
+    "availability": "in-stock",
+    "stockCount": 50,
+    "rating": 4.8,
+    "reviewsCount": 77,
+    "featured": false,
+    "bestseller": false,
+    "images": [
+      "https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?w=600&auto=format&fit=crop&q=80"
+    ],
+    "description": "Dettol Original Germ Protection Bathing Soap bar provides 99.9% germ defense with classic pine fragrance.",
+    "features": [
+      "Trusted 99.9% germ protection",
+      "Moisturizing formula for skin health",
+      "Dermatologically tested",
+      "Fresh pine scent"
+    ],
+    "specifications": {
+      "Pack Size": "3 Bars x 100g",
+      "Item Type": "Bathing Soap"
+    },
+    "variants": ["100g Single", "3x100g Pack", "4+1 Free Pack"]
+  },
+  {
+    "id": "prod-008",
+    "name": "Surf Excel Easy Wash Detergent 1kg",
+    "nameHindi": "सर्फ एक्सेल ईज़ी वॉश 1 किग्रा",
+    "brand": "Surf Excel",
+    "category": "cleaning",
+    "unit": "1 kg Pack",
+    "price": 145,
+    "mrp": 160,
+    "discount": "9% OFF",
+    "availability": "in-stock",
+    "stockCount": 40,
+    "rating": 4.8,
+    "reviewsCount": 92,
+    "featured": true,
+    "bestseller": true,
+    "images": [
+      "https://images.unsplash.com/photo-1585421514738-01798e348b17?w=600&auto=format&fit=crop&q=80"
+    ],
+    "description": "Surf Excel Easy Wash removes tough stains like oil, curry, mud, ink, and ketchup in just half the effort.",
+    "features": [
+      "Superior stain removal technology",
+      "Dissolves completely without leaving residue",
+      "Safe on colors & delicate cottons",
+      "Pleasant floral fragrance"
+    ],
+    "specifications": {
+      "Weight": "1 kg",
+      "Form": "Powder"
+    },
+    "variants": ["500g", "1 kg", "2 kg", "5 kg Box"]
+  },
+  {
+    "id": "prod-009",
+    "name": "PVC Laminated Aadhaar Card Print",
+    "nameHindi": "स्मार्ट पीवीसी आधार कार्ड प्रिंट",
+    "brand": "Digital Printing",
+    "category": "aadhaar-print",
+    "unit": "1 Waterproof Card",
+    "price": 60,
+    "mrp": 100,
+    "discount": "40% OFF",
+    "availability": "in-stock",
+    "stockCount": 500,
+    "rating": 4.9,
+    "reviewsCount": 230,
+    "featured": true,
+    "bestseller": true,
+    "images": [
+      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80"
+    ],
+    "description": "Get your official e-Aadhaar card printed on premium waterproof PVC plastic card with micro-security scan QR code.",
+    "features": [
+      "Credit card size durable PVC plastic",
+      "Waterproof, bendable, and scratch-resistant",
+      "Instant 10-minute counter printing",
+      "Scannable QR code verification"
+    ],
+    "specifications": {
+      "Material": "High Density Polyvinyl Chloride",
+      "Dimensions": "85.6mm x 53.98mm (Standard Wallet Card)"
+    },
+    "variants": ["Standard Glossy PVC", "Matte Premium PVC", "Dual Laminated PVC"]
+  },
+  {
+    "id": "prod-010",
+    "name": "HD Glossy Photo Printing A4",
+    "nameHindi": "ए4 एचडी फोटो प्रिंटिंग",
+    "brand": "Shree Shyam Print",
+    "category": "printing",
+    "unit": "1 A4 Sheet",
+    "price": 25,
+    "mrp": 40,
+    "discount": "37.5% OFF",
+    "availability": "in-stock",
+    "stockCount": 999,
+    "rating": 4.9,
+    "reviewsCount": 115,
+    "featured": true,
+    "bestseller": false,
+    "images": [
+      "assets/images/printing_service.jpg"
+    ],
+    "description": "Ultra high definition 5760 DPI full color photo printing on 230 GSM heavy glossy photographic paper.",
+    "features": [
+      "Studio quality 230 GSM photo paper",
+      "Water-resistant Japanese dye inks",
+      "Free color brightness touchup",
+      "Ideal for framing and memories"
+    ],
+    "specifications": {
+      "Paper Size": "A4 (8.27 x 11.69 in)",
+      "Resolution": "Up to 5760 x 1440 DPI"
+    },
+    "variants": ["A4 Glossy", "A4 Matte", "4x6 Inch Photo (Set of 4)"]
+  },
+  {
+    "id": "prod-011",
+    "name": "Tata Salt Vacuum Evaporated Iodized",
+    "nameHindi": "टाटा नमक 1 किग्रा",
+    "brand": "Tata",
+    "category": "daily-use",
+    "unit": "1 kg",
+    "price": 28,
+    "mrp": 28,
+    "discount": "MRP",
+    "availability": "in-stock",
+    "stockCount": 75,
+    "rating": 4.9,
+    "reviewsCount": 80,
+    "featured": false,
+    "bestseller": false,
+    "images": [
+      "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop&q=80"
+    ],
+    "description": "Desh Ka Namak - Tata Salt contains the right amount of iodine vital for mental development of kids and overall family immunity.",
+    "features": [
+      "Purity guaranteed vacuum evaporated salt",
+      "Contains iodine essential for health",
+      "Free-flowing non-clumping salt crystals",
+      "Hygienically packed"
+    ],
+    "specifications": {
+      "Net Weight": "1 kg",
+      "Form": "Powder"
+    },
+    "variants": ["1 kg Standard", "1 kg Low Sodium Superlite"]
+  },
+  {
+    "id": "prod-012",
+    "name": "LIC Jeevan Utsav Policy Consultation",
+    "nameHindi": "एलआईसी जीवन उत्सव योजना सलाह",
+    "brand": "LIC of India",
+    "category": "lic-services",
+    "unit": "Free Consultation",
+    "price": 0,
+    "mrp": 0,
+    "discount": "FREE ASSISTANCE",
+    "availability": "in-stock",
+    "stockCount": 100,
+    "rating": 5.0,
+    "reviewsCount": 320,
+    "featured": true,
+    "bestseller": true,
+    "images": [
+      "assets/banners/lic_banner.jpg"
+    ],
+    "description": "Get expert consultation for LIC Jeevan Utsav Plan - a non-linked, non-participating, individual, savings, life insurance plan offering guaranteed income for lifetime.",
+    "features": [
+      "Guaranteed Additions of ₹40 per thousand basic sum assured",
+      "Lifetime income benefit of 10% basic sum assured annually after premium term",
+      "Loan facility available anytime after 2 years",
+      "Tax savings benefit under Section 80C and 10(10D)"
+    ],
+    "specifications": {
+      "LIC Agent": "Kiran Devi (Code: 01649/53H)",
+      "Branch": "Motipur, Muzaffarpur",
+      "Min Age at Entry": "90 Days",
+      "Max Age at Entry": "65 Years"
+    },
+    "variants": ["Home Visit Consultation", "Office Visit Consultation", "WhatsApp Video Call"]
+  }
+]

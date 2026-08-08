@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Control Panel - Shree Shyam Enterprises</title>
+  
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animations.css">
+
+  <style>
+    .admin-login-wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--primary-blue-dark), #0B1329);
+      padding: 1.5rem;
+    }
+    .admin-login-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: var(--shadow-lg);
+      text-align: center;
+    }
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--bg-card);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .admin-table th, .admin-table td {
+      padding: 1rem;
+      border-bottom: 1px solid var(--border-color);
+      text-align: left;
+    }
+    .admin-table th {
+      background: var(--bg-tertiary);
+      font-family: var(--font-poppins);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ADMIN PASSCODE LOGIN SCREEN (NO HINT DISCLOSED) -->
+  <div id="admin-login-section" class="admin-login-wrap">
+    <div class="admin-login-card">
+      <div style="width:70px; height:70px; border-radius:50%; background:linear-gradient(135deg, var(--primary-blue), var(--accent-gold)); color:#FFF; display:flex; align-items:center; justify-content:center; font-size:2rem; margin:0 auto 1.5rem auto;">
+        <i class="fas fa-user-shield"></i>
+      </div>
+      <h2 style="font-family:var(--font-poppins); font-weight:800; font-size:1.6rem; margin-bottom:0.3rem;">Shop Admin Control</h2>
+      <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.5rem;">SHREE SHYAM ENTERPRISES<br><small>Barkagaon Devriya Road</small></p>
+      
+      <div style="margin-bottom:1.5rem;">
+        <label style="display:block; font-weight:700; text-align:left; margin-bottom:0.4rem; font-size:0.85rem;">Enter Admin Passcode:</label>
+        <input type="password" id="admin-passcode-input" placeholder="Enter Passcode" style="width:100%; padding:0.8rem 1rem; border:1px solid var(--border-color); border-radius:var(--radius-md); background:var(--bg-tertiary); color:var(--text-main); font-size:1.1rem; text-align:center; letter-spacing:2px;">
+      </div>
+
+      <button id="admin-login-btn" class="btn btn-primary btn-lg" style="width:100%; justify-content:center;"><i class="fas fa-key"></i> Access Dashboard</button>
+      
+      <div style="margin-top:1.5rem; border-top:1px solid var(--border-color); padding-top:1rem;">
+        <a href="index.html" style="font-size:0.85rem; color:var(--text-muted);"><i class="fas fa-arrow-left"></i> Back to Main Website</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN ADMIN DASHBOARD SECTION -->
+  <div id="admin-dashboard-section" style="display:none; min-height:100vh; background:var(--bg-primary);">
+    
+    <!-- Admin Header -->
+    <header style="background:var(--bg-secondary); border-bottom:1px solid var(--border-color); padding:1rem 0; position:sticky; top:0; z-index:100;">
+      <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
+        <div style="display:flex; align-items:center; gap:1rem;">
+          <a href="index.html" class="logo-brand">
+            <div class="logo-icon"><i class="fas fa-shopping-bag"></i></div>
+            <div class="logo-text">
+              <h1>SHREE SHYAM</h1>
+              <span>ADMIN PANEL</span>
+            </div>
+          </a>
+          <span class="badge badge-stock" style="background:var(--success-green); font-size:0.75rem;"><i class="fas fa-check-circle"></i> Govt MSME Registered (UDYAM-BR-23-0126667)</span>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:1rem;">
+          <a href="index.html" class="btn btn-outline btn-sm" target="_blank"><i class="fas fa-external-link-alt"></i> View Live Website</a>
+          <button id="admin-logout-btn" class="btn btn-sm" style="background:var(--danger-red); color:#FFF;"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Admin Body -->
+    <main class="section-padding">
+      <div class="container">
+        
+        <!-- Metrics Row -->
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:1.5rem; margin-bottom:2.5rem;">
+          
+          <div style="background:var(--bg-card); border:1px solid var(--border-color); padding:1.5rem; border-radius:var(--radius-lg); box-shadow:var(--shadow-xs); display:flex; align-items:center; justify-content:space-between;">
+            <div>
+              <div style="font-size:0.85rem; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Total Products</div>
+              <div id="metric-total-prod" style="font-size:2.2rem; font-weight:900; color:var(--primary-blue-light); font-family:var(--font-poppins);">0</div>
+            </div>
+            <i class="fas fa-boxes-stacked" style="font-size:2.5rem; color:var(--primary-blue); opacity:0.3;"></i>
+          </div>
+
+          <div style="background:var(--bg-card); border:1px solid var(--border-color); padding:1.5rem; border-radius:var(--radius-lg); box-shadow:var(--shadow-xs); display:flex; align-items:center; justify-content:space-between;">
+            <div>
+              <div style="font-size:0.85rem; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Out of Stock</div>
+              <div id="metric-out-stock" style="font-size:2.2rem; font-weight:900; color:var(--danger-red); font-family:var(--font-poppins);">0</div>
+            </div>
+            <i class="fas fa-exclamation-circle" style="font-size:2.5rem; color:var(--danger-red); opacity:0.3;"></i>
+          </div>
+
+          <div style="background:var(--bg-card); border:1px solid var(--border-color); padding:1.5rem; border-radius:var(--radius-lg); box-shadow:var(--shadow-xs); display:flex; align-items:center; justify-content:space-between;">
+            <div>
+              <div style="font-size:0.85rem; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Active Offers & Deals</div>
+              <div id="metric-offers" style="font-size:2.2rem; font-weight:900; color:var(--accent-gold); font-family:var(--font-poppins);">0</div>
+            </div>
+            <i class="fas fa-tags" style="font-size:2.5rem; color:var(--accent-gold); opacity:0.3;"></i>
+          </div>
+
+          <div style="background:var(--bg-card); border:1px solid var(--border-color); padding:1.5rem; border-radius:var(--radius-lg); box-shadow:var(--shadow-xs); display:flex; flex-direction:column; justify-content:center; gap:0.5rem;">
+            <button class="btn btn-gold btn-sm" onclick="exportUpdatedJson()"><i class="fas fa-file-export"></i> 1-Click Export products.json</button>
+            <button class="btn btn-outline btn-sm" onclick="resetAdminProductsToDefault()"><i class="fas fa-undo"></i> Reset to Default</button>
+          </div>
+
+        </div>
+
+        <!-- Controls & Add Product Bar -->
+        <div style="background:var(--bg-card); border:1px solid var(--border-color); padding:1.25rem; border-radius:var(--radius-md); margin-bottom:1.5rem; display:flex; flex-wrap:wrap; gap:1rem; justify-content:space-between; align-items:center;">
+          <div style="display:flex; gap:1rem; flex:1; min-width:280px;">
+            <input type="text" id="admin-search-input" placeholder="Search product name, brand, or code..." style="padding:0.6rem 1rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main); flex:1;">
+            
+            <select id="admin-category-select" style="padding:0.6rem 1rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main); font-weight:600;">
+              <option value="all">All Categories</option>
+              <option value="groceries">Groceries</option>
+              <option value="snacks">Snacks</option>
+              <option value="cold-drinks">Cold Drinks</option>
+              <option value="biscuits">Biscuits</option>
+              <option value="daily-use">Daily Use</option>
+              <option value="personal-care">Personal Care</option>
+              <option value="cleaning">Cleaning</option>
+              <option value="stationery">Stationery</option>
+              <option value="printing">Printing</option>
+              <option value="aadhaar-print">Aadhaar PVC Card</option>
+              <option value="lic-services">LIC Services</option>
+            </select>
+          </div>
+
+          <button class="btn btn-primary" onclick="openAddProductModal()"><i class="fas fa-plus-circle"></i> Add New Product</button>
+        </div>
+
+        <!-- Admin Product Table -->
+        <div style="overflow-x:auto;">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Product Name & Hindi</th>
+                <th>Category</th>
+                <th>Price / MRP</th>
+                <th>Discount</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="admin-products-tbody">
+              <!-- Rendered by admin.js -->
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- ADD / EDIT PRODUCT MODAL -->
+  <div id="admin-prod-modal" class="modal-overlay">
+    <div class="quickview-modal" style="max-width:650px; padding:2rem;">
+      <button class="close-modal-btn" onclick="closeAdminProductModal()"><i class="fas fa-times"></i></button>
+      <h2 id="modal-title-text" style="font-family:var(--font-poppins); font-size:1.5rem; font-weight:800; margin-bottom:1.25rem;">Add New Product</h2>
+
+      <form id="product-form" onsubmit="saveProductFromForm(event)">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem;">
+          <div>
+            <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:0.3rem;">Product Name *</label>
+            <input type="text" id="adm-name" required placeholder="e.g. Fortune Refined Oil" style="width:100%; padding:0.6rem 0.8rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main);">
+          </div>
+          <div>
+            <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:0.3rem;">Name in Hindi (optional)</label>
+            <input type="text" id="adm-hindi-name" placeholder="e.g. फॉर्च्यून रिफाइंड ऑयल" style="width:100%; padding:0.6rem 0.8rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main); font-family:var(--font-hindi);">
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin-bottom:1rem;">
+          <div>
+            <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:0.3rem;">Brand</label>
+            <input type="text" id="adm-brand" placeholder="e.g. Fortune / Britannia" style="width:100%; padding:0.6rem 0.8rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main);">
+          </div>
+          <div>
+            <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:0.3rem;">Category *</label>
+            <select id="adm-category" required style="width:100%; padding:0.6rem 0.8rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main); font-weight:600;">
+              <option value="groceries">Groceries</option>
+              <option value="snacks">Snacks</option>
+              <option value="cold-drinks">Cold Drinks</option>
+              <option value="biscuits">Biscuits</option>
+              <option value="daily-use">Daily Use</option>
+              <option value="personal-care">Personal Care</option>
+              <option value="cleaning">Cleaning</option>
+              <option value="stationery">Stationery</option>
+              <option value="printing">Printing</option>
+              <option value="aadhaar-print">Aadhaar PVC Card</option>
+              <option value="lic-services">LIC Services</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:0.3rem;">Unit / Pack Size *</label>
+            <input type="text" id="adm-unit" required placeholder="e.g. 1 kg / 500g / 1 Litre" style="width:100%; padding:0.6rem 0.8rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main);">
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:1rem; margin-bottom:1rem;">
+          <div>
+            <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:0.3rem;">Selling Price (₹) *</label>
+            <input type="number" id="adm-price" required min="0" step="1" placeholder="140" style="width:100%; padding:0.6rem 0.8rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main); font-weight:700;">
+          </div>
+          <div>
+            <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:0.3rem;">MRP Price (₹) *</label>
+            <input type="number" id="adm-mrp" required min="0" step="1" placeholder="165" style="width:100%; padding:0.6rem 0.8rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main);">
+          </div>
+          <div>
+            <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:0.3rem;">Stock Count</label>
+            <input type="number" id="adm-stock" value="50" min="0" style="width:100%; padding:0.6rem 0.8rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main);">
+          </div>
+          <div>
+            <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:0.3rem;">Availability</label>
+            <select id="adm-availability" style="width:100%; padding:0.6rem 0.8rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main); font-weight:600;">
+              <option value="in-stock">In Stock</option>
+              <option value="out-of-stock">Out of Stock</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="margin-bottom:1rem;">
+          <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:0.3rem;">Image URL / Asset Path</label>
+          <input type="text" id="adm-image-url" placeholder="assets/products/grocery_atta.jpg or https://..." style="width:100%; padding:0.6rem 0.8rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main);">
+        </div>
+
+        <div style="margin-bottom:1.5rem;">
+          <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:0.3rem;">Product Description</label>
+          <textarea id="adm-desc" rows="3" placeholder="Brief description of the product..." style="width:100%; padding:0.6rem 0.8rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main); font-family:inherit;"></textarea>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:1rem;">
+          <button type="button" class="btn btn-outline" onclick="closeAdminProductModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/products.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

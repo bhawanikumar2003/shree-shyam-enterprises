@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart - Shree Shyam Enterprises</title>
+  
+  <meta name="description" content="Review your shopping cart items at Shree Shyam Enterprises, Barkagaon Devriya Road.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+
+  <!-- Top Info Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-container">
+      <div class="top-info">
+        <span><i class="fas fa-map-marker-alt"></i> Store: Barkagaon Devriya Road, In front of Tiwari Niwash Bhawan</span>
+        <span><i class="fas fa-phone-alt"></i> Store: <a href="tel:7352383419">7352383419</a></span>
+        <span><i class="fas fa-certificate"></i> MSME Govt Reg: UDYAM-BR-23-0126667</span>
+      </div>
+      <div class="top-actions">
+        <span class="font-hindi" style="color: var(--accent-gold-light); font-weight:700;">आपकी जरूरत, हमारा वादा</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="logo-brand">
+        <div class="logo-icon"><i class="fas fa-shopping-bag"></i></div>
+        <div class="logo-text">
+          <h1>SHREE SHYAM</h1>
+          <span>ENTERPRISES</span>
+        </div>
+      </a>
+
+      <div class="nav-search">
+        <div class="search-input-wrap">
+          <input type="text" id="header-search-input" placeholder="Search groceries, snacks, stationery..." autocomplete="off">
+          <button class="search-btn" aria-label="Search"><i class="fas fa-search"></i></button>
+        </div>
+        <div id="header-search-results" class="search-results-dropdown"></div>
+      </div>
+
+      <nav id="nav-links" class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="products.html" class="nav-link">Products</a>
+        <a href="services.html" class="nav-link">Services & LIC</a>
+        <a href="about.html" class="nav-link">About Us</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="admin.html" class="nav-link" style="color:var(--accent-gold);"><i class="fas fa-user-lock"></i> Admin</a>
+      </nav>
+
+      <div class="nav-controls">
+        <button id="theme-toggle-btn" class="icon-btn" aria-label="Toggle Theme"><i class="fas fa-moon"></i></button>
+        <button id="cart-icon-btn" class="icon-btn" aria-label="View Cart">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-badge">0</span>
+        </button>
+        <button id="hamburger-btn" class="hamburger-btn" aria-label="Open Mobile Menu"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section style="background: linear-gradient(135deg, var(--primary-blue-dark), var(--primary-blue)); color:#FFF; padding: 2.5rem 0;">
+    <div class="container text-center">
+      <h1 style="font-family:var(--font-poppins); font-size:2.2rem; font-weight:800;"><i class="fas fa-shopping-cart"></i> Shopping Cart Management</h1>
+    </div>
+  </section>
+
+  <!-- Main Cart Section -->
+  <section class="section-padding" style="background:var(--bg-primary);">
+    <div class="container">
+      <div id="cart-page-content" style="display:grid; grid-template-columns: 2fr 1fr; gap:2.5rem;">
+        <!-- Cart Items Column -->
+        <div>
+          <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:1.5rem; margin-bottom:2rem; box-shadow:var(--shadow-sm);">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-color); padding-bottom:1rem; margin-bottom:1rem;">
+              <h3 style="font-size:1.3rem; font-weight:700;">My Cart Items</h3>
+              <span id="cart-item-count-label" style="color:var(--text-muted); font-weight:600;">0 Items</span>
+            </div>
+            <div id="full-cart-items-list"></div>
+          </div>
+
+          <!-- Save For Later Section -->
+          <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:1.5rem; box-shadow:var(--shadow-sm);">
+            <h3 style="font-size:1.2rem; font-weight:700; border-bottom:1px solid var(--border-color); padding-bottom:0.75rem; margin-bottom:1rem;">
+              <i class="fas fa-bookmark" style="color:var(--accent-gold);"></i> Save For Later Shelf
+            </h3>
+            <div id="saved-for-later-list"></div>
+          </div>
+        </div>
+
+        <!-- Summary Column -->
+        <div>
+          <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:1.75rem; position:sticky; top:100px; box-shadow:var(--shadow-md);">
+            <h3 style="font-size:1.25rem; font-weight:800; border-bottom:1px solid var(--border-color); padding-bottom:0.75rem; margin-bottom:1.25rem;">Order Price Summary</h3>
+            
+            <div style="display:flex; justify-content:space-between; margin-bottom:0.75rem; color:var(--text-secondary);">
+              <span>Items Subtotal:</span>
+              <strong id="cart-summary-subtotal" style="color:var(--text-main);">₹0</strong>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; margin-bottom:0.75rem; color:var(--text-secondary);">
+              <span>Estimated Delivery Fee:</span>
+              <strong id="cart-summary-delivery" style="color:var(--success-green);">FREE</strong>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; margin-bottom:1.25rem; color:var(--text-secondary);">
+              <span>GST & Taxes (Placeholder):</span>
+              <strong style="color:var(--text-main);">Included in Price</strong>
+            </div>
+
+            <div style="border-top:1px solid var(--border-color); padding-top:1rem; margin-top:1rem; display:flex; justify-content:space-between; align-items:baseline; margin-bottom:1.5rem;">
+              <span style="font-size:1.15rem; font-weight:800;">Total Payable:</span>
+              <span id="cart-summary-grandtotal" style="font-size:1.6rem; font-weight:900; color:var(--primary-blue-light);">₹0</span>
+            </div>
+
+            <a href="checkout.html" id="proceed-checkout-btn" class="btn btn-whatsapp btn-lg" style="width:100%; justify-content:center;"><i class="fab fa-whatsapp"></i> Proceed to Order</a>
+            
+            <div style="margin-top:1rem; text-align:center;">
+              <a href="products.html" style="font-size:0.9rem; color:var(--primary-blue-light); font-weight:600;"><i class="fas fa-arrow-left"></i> Continue Shopping</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col-about">
+          <h3>SHREE SHYAM ENTERPRISES</h3>
+          <p class="font-hindi" style="color:var(--accent-gold); font-size:1.1rem; font-weight:700;">"आपकी जरूरत, हमारा वादा"</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="services.html">Services & LIC</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="admin.html">Admin Panel</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Store Address</h4>
+          <ul class="footer-links">
+            <li>Barkagaon Devriya Road, In front of Tiwari Niwash Bhawan, Muzaffarpur</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact Info</h4>
+          <ul class="footer-links">
+            <li>Owner: Mr. Kaushal Tiwari (7352383419)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Shree Shyam Enterprises. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Slide Cart Drawer -->
+  <div id="cart-drawer-overlay" class="cart-drawer-overlay"></div>
+  <aside id="cart-drawer" class="cart-drawer">
+    <div class="cart-drawer-header">
+      <h3><i class="fas fa-shopping-basket" style="color:var(--primary-blue-light);"></i> Your Shopping Cart</h3>
+      <button id="close-drawer-btn" class="close-drawer-btn" aria-label="Close Cart"><i class="fas fa-times"></i></button>
+    </div>
+    <div id="cart-drawer-items" class="cart-drawer-body"></div>
+    <div class="cart-drawer-footer">
+      <div class="cart-summary-row cart-summary-total">
+        <span>Subtotal Amount:</span>
+        <span id="cart-drawer-subtotal">₹0</span>
+      </div>
+      <div class="cart-drawer-actions">
+        <a href="cart.html" class="btn btn-outline">View Full Cart</a>
+        <a href="checkout.html" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> Checkout</a>
+      </div>
+    </div>
+  </aside>
+
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/search.js"></script>
+
+  <script>
+    function renderFullCartPage() {
+      const container = document.getElementById('full-cart-items-list');
+      const countLabel = document.getElementById('cart-item-count-label');
+      const subtotalEl = document.getElementById('cart-summary-subtotal');
+      const deliveryEl = document.getElementById('cart-summary-delivery');
+      const grandTotalEl = document.getElementById('cart-summary-grandtotal');
+
+      if (!container) return;
+
+      const cart = Cart.getCart();
+      const count = Cart.getCartCount();
+      if (countLabel) countLabel.textContent = `${count} Items`;
+
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="text-center" style="padding: 3rem 1rem;">
+            <i class="fas fa-shopping-basket" style="font-size: 3.5rem; color:var(--text-muted); margin-bottom:1rem;"></i>
+            <h3>Your Cart is Currently Empty</h3>
+            <p style="color:var(--text-muted); margin-top:0.5rem;">Explore our high quality groceries, snacks, and stationery!</p>
+            <a href="products.html" class="btn btn-primary" style="margin-top:1.5rem;"><i class="fas fa-store"></i> Explore Products</a>
+          </div>
+        `;
+        if (subtotalEl) subtotalEl.textContent = '₹0';
+        if (deliveryEl) deliveryEl.textContent = '₹0';
+        if (grandTotalEl) grandTotalEl.textContent = '₹0';
+        return;
+      }
+
+      container.innerHTML = cart.map(item => `
+        <div style="display:flex; gap:1.5rem; align-items:center; padding:1.2rem 0; border-bottom:1px solid var(--border-color);">
+          <img src="${item.image}" alt="${item.name}" style="width:85px; height:85px; object-fit:contain; border-radius:var(--radius-md); border:1px solid var(--border-color); padding:0.4rem; background:#FFF;">
+          <div style="flex:1;">
+            <h4 style="font-size:1.05rem; font-weight:700; margin-bottom:0.2rem;">${item.name}</h4>
+            <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:0.4rem;">Size / Pack: ${item.variant}</div>
+            <div style="font-size:1.1rem; font-weight:800; color:var(--primary-blue-light);">₹${item.price}</div>
+          </div>
+          <div style="display:flex; align-items:center; gap:1.5rem;">
+            <div class="qty-control" style="padding:0.2rem;">
+              <button class="qty-btn" onclick="Cart.updateQuantity('${item.id}', '${item.variant}', ${item.quantity - 1})">-</button>
+              <span class="qty-val">${item.quantity}</span>
+              <button class="qty-btn" onclick="Cart.updateQuantity('${item.id}', '${item.variant}', ${item.quantity + 1})">+</button>
+            </div>
+            <div style="font-size:1.15rem; font-weight:800; min-width:80px; text-align:right;">
+              ₹${item.price * item.quantity}
+            </div>
+            <button onclick="Cart.saveForLater('${item.id}', '${item.variant}')" style="color:var(--accent-gold-dark);" title="Save For Later"><i class="fas fa-bookmark"></i></button>
+            <button onclick="Cart.removeFromCart('${item.id}', '${item.variant}')" style="color:var(--danger-red);" title="Remove"><i class="fas fa-trash-alt"></i></button>
+          </div>
+        </div>
+      `).join('');
+
+      const subtotal = Cart.getCartSubtotal();
+      const deliveryFee = subtotal >= 500 ? 0 : 30;
+      const grandTotal = subtotal + deliveryFee;
+
+      if (subtotalEl) subtotalEl.textContent = `₹${subtotal}`;
+      if (deliveryEl) deliveryEl.textContent = deliveryFee === 0 ? 'FREE' : `₹${deliveryFee}`;
+      if (grandTotalEl) grandTotalEl.textContent = `₹${grandTotal}`;
+
+      const savedListEl = document.getElementById('saved-for-later-list');
+      const savedItems = Cart.getSavedItems();
+      if (savedListEl) {
+        if (savedItems.length === 0) {
+          savedListEl.innerHTML = `<p style="color:var(--text-muted); font-size:0.9rem;">No items saved for later.</p>`;
+        } else {
+          savedListEl.innerHTML = savedItems.map(item => `
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:0.75rem 0; border-bottom:1px solid var(--border-color);">
+              <div>
+                <strong>${item.name}</strong> (${item.variant}) - <span style="color:var(--primary-blue-light); font-weight:700;">₹${item.price}</span>
+              </div>
+              <button class="btn btn-outline btn-sm" onclick="Cart.moveToCart('${item.id}', '${item.variant}')">Move to Cart</button>
+            </div>
+          `).join('');
+        }
+      }
+    }
+
+    window.renderCartPage = renderFullCartPage;
+    document.addEventListener('DOMContentLoaded', renderFullCartPage);
+  </script>
+</body>
+</html>

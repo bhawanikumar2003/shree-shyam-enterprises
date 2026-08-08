@@ -1,0 +1,124 @@
+{
+  "digitalServices": [
+    {
+      "id": "srv-photo-print",
+      "title": "HD Photo Printing",
+      "titleHindi": "एचडी फोटो प्रिंटिंग",
+      "icon": "fas fa-camera-retro",
+      "price": "₹10 / photo",
+      "turnaround": "Instant (5 mins)",
+      "description": "High quality glossy/matte studio photo printing for 4x6, 5x7, 8x10, and A4 sizes.",
+      "features": ["Glossy & Matte paper options", "Color correction included", "Long-lasting waterproof ink", "Instant passport size options"],
+      "image": "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=500&auto=format&fit=crop&q=80"
+    },
+    {
+      "id": "srv-photocopy",
+      "title": "Photocopy & Xerox",
+      "titleHindi": "फोटोकॉपी एवं ज़ेरॉक्स",
+      "icon": "fas fa-copy",
+      "price": "₹2 / page",
+      "turnaround": "Instant",
+      "description": "Ultra-fast single & double sided black-and-white photocopy for documents, books, & ID proofs.",
+      "features": ["Single & double side printing", "Auto document feeder for fast bulk copies", "Clear crisp high contrast text", "Discount on bulk copies (100+ pages)"],
+      "image": "https://images.unsplash.com/photo-1562564077-715947275f61?w=500&auto=format&fit=crop&q=80"
+    },
+    {
+      "id": "srv-color-print",
+      "title": "Color & B/W Printing",
+      "titleHindi": "कलर एवं ब्लैक-व्हाइट प्रिंटिंग",
+      "icon": "fas fa-print",
+      "price": "₹5 - ₹15 / page",
+      "turnaround": "Instant",
+      "description": "High resolution document printing directly from WhatsApp, Pen Drive, Email, or Google Drive.",
+      "features": ["Print from WhatsApp / PDF / Word / Images", "High resolution color laser printing", "Heavy GSM cardstock paper available", "Spiral & Hard cover binding available"],
+      "image": "assets/images/printing_service.jpg"
+    },
+    {
+      "id": "srv-passport-photo",
+      "title": "Passport Size Photo",
+      "titleHindi": "पासपोर्ट साइज फोटो",
+      "icon": "fas fa-user-circle",
+      "price": "₹50 (8 Copies)",
+      "turnaround": "10 minutes",
+      "description": "Instant studio background passport photo shooting, retouching, and 8/16/32 copy printing.",
+      "features": ["White, Blue, or Grey background", "Instant digital touchup & suit edit", "Complimentary digital soft copy sent via WhatsApp", "Official size specifications compliant with govt forms"],
+      "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=80"
+    },
+    {
+      "id": "srv-aadhaar-print",
+      "title": "PVC Aadhaar & Smart Card Print",
+      "titleHindi": "आधार एवं पीवीसी स्मार्ट कार्ड प्रिंट",
+      "icon": "fas fa-id-card",
+      "price": "₹60 / card",
+      "turnaround": "15 minutes",
+      "description": "Durable, waterproof, laminated PVC plastic smart card printing for Aadhaar, PAN, & Ayushman cards.",
+      "features": ["High resolution micro-text printing", "Waterproof and scratch-proof PVC plastic", "Wallet size easy to carry", "QR Code scan verified output"],
+      "image": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=500&auto=format&fit=crop&q=80"
+    },
+    {
+      "id": "srv-online-form",
+      "title": "Online Govt & Job Form Fillup",
+      "titleHindi": "ऑनलाइन फॉर्म भराई सेवाएं",
+      "icon": "fas fa-laptop-code",
+      "price": "₹50 - ₹100",
+      "turnaround": "20 - 30 minutes",
+      "description": "Expert assistance for filing government job forms, admission forms, scholarship applications, & admit cards.",
+      "features": ["100% Error-free application filing", "Document scanning & image compression included", "Online fee payment assistance", "Instant acknowledgment printout"],
+      "image": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=500&auto=format&fit=crop&q=80"
+    },
+    {
+      "id": "srv-doc-scan",
+      "title": "Document Scanning & PDF Creation",
+      "titleHindi": "डॉक्यूमेंट स्कैनिंग एवं पीडीएफ",
+      "icon": "fas fa-file-pdf",
+      "price": "₹5 / document",
+      "turnaround": "Instant",
+      "description": "High DPI optical document scanning to PDF or JPEG for email, job portals, or official submissions.",
+      "features": ["Multi-page single PDF file creation", "OCR text searchable PDF options", "Instant email/WhatsApp dispatch", "Secure document privacy assured"],
+      "image": "https://images.unsplash.com/photo-1568667256549-094345857637?w=500&auto=format&fit=crop&q=80"
+    }
+  ],
+  "licAgentDetails": {
+    "agentName": "Kiran Devi",
+    "agentCode": "01649/53H",
+    "branch": "Motipur",
+    "district": "Muzaffarpur, Bihar",
+    "phone": "7254931284",
+    "whatsapp": "7254931284",
+    "email": "keeran01649@gmail.com",
+    "experience": "12+ Years Trust & Excellence",
+    "bannerImage": "assets/banners/lic_banner.jpg",
+    "services": [
+      {
+        "id": "lic-new-policy",
+        "title": "New LIC Policy Consultation",
+        "titleHindi": "नई एलआईसी पॉलिसी मार्गदर्शन",
+        "description": "Personalized advice to select the best plan (Endowment, Money Back, Term Insurance, Pension Plans)."
+      },
+      {
+        "id": "lic-renewal",
+        "title": "Policy Premium Renewal & Deposit",
+        "titleHindi": "प्रीमियम रिन्यूअल एवं जमा",
+        "description": "Hassle-free online premium deposit, receipt generation, and reminder alerts for upcoming due dates."
+      },
+      {
+        "id": "lic-fund",
+        "title": "Fund & Wealth Investment Plans",
+        "titleHindi": "फंड एवं वेल्थ प्लान",
+        "description": "Child education plans (Jeevan Tarang / Amritbaal), retirement funds, and ULIP returns."
+      },
+      {
+        "id": "lic-loan",
+        "title": "Policy Loan Assistance",
+        "titleHindi": "पॉलिसी लोन सहायता",
+        "description": "Get emergency instant loans against existing LIC policies at minimal government interest rates."
+      },
+      {
+        "id": "lic-claim",
+        "title": "Maturity & Death Claim Settlement",
+        "titleHindi": "मैच्योरिटी एवं क्लेम सेटलमेंट",
+        "description": "Fast-track assistance for maturity payouts, death claim filing, and nominee documentation."
+      }
+    ]
+  }
+}

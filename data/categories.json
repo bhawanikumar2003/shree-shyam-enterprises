@@ -1,0 +1,132 @@
+[
+  {
+    "id": "groceries",
+    "name": "Groceries",
+    "nameHindi": "किराना",
+    "icon": "fas fa-shopping-basket",
+    "image": "assets/products/grocery_atta.jpg",
+    "description": "Essential staples, flour, rice, pulses, refined oil, and spices.",
+    "itemCount": 24,
+    "featured": true
+  },
+  {
+    "id": "snacks",
+    "name": "Snacks",
+    "nameHindi": "नमकीन एवं स्नैक्स",
+    "icon": "fas fa-cookie-bite",
+    "image": "https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=500&auto=format&fit=crop&q=80",
+    "description": "Crispy chips, namkeen, bhujia, and traditional snacks.",
+    "itemCount": 18,
+    "featured": true
+  },
+  {
+    "id": "cold-drinks",
+    "name": "Cold Drinks",
+    "nameHindi": "कोल्ड ड्रिंक्स",
+    "icon": "fas fa-glass-whiskey",
+    "image": "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=500&auto=format&fit=crop&q=80",
+    "description": "Refreshing soft drinks, juices, energy drinks, and mineral water.",
+    "itemCount": 15,
+    "featured": true
+  },
+  {
+    "id": "biscuits",
+    "name": "Biscuits & Bakery",
+    "nameHindi": "बिस्कुट एवं बेकरी",
+    "icon": "fas fa-cookie",
+    "image": "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=500&auto=format&fit=crop&q=80",
+    "description": "Butter biscuits, cream cookies, rusk, and digestive snacks.",
+    "itemCount": 20,
+    "featured": true
+  },
+  {
+    "id": "daily-use",
+    "name": "Daily Use Items",
+    "nameHindi": "दैनिक उपयोग की वस्तुएं",
+    "icon": "fas fa-concierge-bell",
+    "image": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=500&auto=format&fit=crop&q=80",
+    "description": "Tea, coffee, sugar, salt, incense sticks, and matches.",
+    "itemCount": 22,
+    "featured": true
+  },
+  {
+    "id": "personal-care",
+    "name": "Personal Care",
+    "nameHindi": "पर्सनल केयर",
+    "icon": "fas fa-pump-soap",
+    "image": "https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?w=500&auto=format&fit=crop&q=80",
+    "description": "Soaps, shampoos, hair oils, toothpaste, and skincare products.",
+    "itemCount": 30,
+    "featured": true
+  },
+  {
+    "id": "household",
+    "name": "Household Supplies",
+    "nameHindi": "घरेलू सामान",
+    "icon": "fas fa-home",
+    "image": "https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=500&auto=format&fit=crop&q=80",
+    "description": "Pooja items, plasticware, torch, batteries, and utility items.",
+    "itemCount": 16,
+    "featured": false
+  },
+  {
+    "id": "cleaning",
+    "name": "Cleaning Essentials",
+    "nameHindi": "सफाई सामग्री",
+    "icon": "fas fa-broom",
+    "image": "https://images.unsplash.com/photo-1585421514738-01798e348b17?w=500&auto=format&fit=crop&q=80",
+    "description": "Detergent powders, dishwash bars, floor cleaners, and brooms.",
+    "itemCount": 18,
+    "featured": true
+  },
+  {
+    "id": "stationery",
+    "name": "Stationery",
+    "nameHindi": "स्टेशनरी",
+    "icon": "fas fa-pen-nib",
+    "image": "assets/products/stationery_notebook.jpg",
+    "description": "Notebooks, registers, pens, pencils, geometry boxes, and charts.",
+    "itemCount": 25,
+    "featured": true
+  },
+  {
+    "id": "printing",
+    "name": "Digital Printing",
+    "nameHindi": "डिजिटल प्रिंटिंग",
+    "icon": "fas fa-print",
+    "image": "assets/images/printing_service.jpg",
+    "description": "Color & B/W digital photo printing, documents, and banners.",
+    "itemCount": 8,
+    "featured": true
+  },
+  {
+    "id": "photocopy",
+    "name": "Photocopy & Xerox",
+    "nameHindi": "फोटोकॉपी एवं जेरोक्स",
+    "icon": "fas fa-copy",
+    "image": "https://images.unsplash.com/photo-1562564077-715947275f61?w=500&auto=format&fit=crop&q=80",
+    "description": "High-speed document photocopy, scanning, and binding.",
+    "itemCount": 6,
+    "featured": false
+  },
+  {
+    "id": "aadhaar-print",
+    "name": "Aadhaar & Smart Card Print",
+    "nameHindi": "आधार एवं कार्ड प्रिंट",
+    "icon": "fas fa-id-card",
+    "image": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=500&auto=format&fit=crop&q=80",
+    "description": "Instant laminated PVC card printing for Aadhaar, PAN, & Voter ID.",
+    "itemCount": 5,
+    "featured": true
+  },
+  {
+    "id": "lic-services",
+    "name": "LIC Insurance Services",
+    "nameHindi": "एलआईसी बीमा सेवाएं",
+    "icon": "fas fa-shield-alt",
+    "image": "assets/banners/lic_banner.jpg",
+    "description": "Life Insurance policies, renewal, loans, fund deposit, & claims.",
+    "itemCount": 10,
+    "featured": true
+  }
+]
