@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Control Panel - Shree Shyam Enterprises</title>
+  <title>Supercharged Admin Panel & OkCredit Khata - Shree Shyam Enterprises</title>
   
   <meta name="robots" content="noindex, nofollow">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -40,7 +40,7 @@
       box-shadow: var(--shadow-sm);
     }
     .admin-table th, .admin-table td {
-      padding: 1rem;
+      padding: 0.85rem 1rem;
       border-bottom: 1px solid var(--border-color);
       text-align: left;
     }
@@ -52,6 +52,24 @@
       text-transform: uppercase;
       color: var(--text-muted);
     }
+    .admin-tab-btn {
+      padding: 0.75rem 1.25rem;
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .admin-tab-btn.active, .admin-tab-btn:hover {
+      color: var(--primary-blue-light);
+      border-bottom-color: var(--primary-blue-light);
+    }
   </style>
 </head>
 <body>
@@ -62,7 +80,7 @@
       <div style="width:70px; height:70px; border-radius:50%; background:linear-gradient(135deg, var(--primary-blue), var(--accent-gold)); color:#FFF; display:flex; align-items:center; justify-content:center; font-size:2rem; margin:0 auto 1.5rem auto;">
         <i class="fas fa-user-shield"></i>
       </div>
-      <h2 style="font-family:var(--font-poppins); font-weight:800; font-size:1.6rem; margin-bottom:0.3rem;">Shop Admin Control</h2>
+      <h2 style="font-family:var(--font-poppins); font-weight:800; font-size:1.6rem; margin-bottom:0.3rem;">Shop Admin & Khata Control</h2>
       <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.5rem;">SHREE SHYAM ENTERPRISES<br><small>Barkagaon Devriya Road</small></p>
       
       <div style="margin-bottom:1.5rem;">
@@ -89,7 +107,7 @@
             <div class="logo-icon"><i class="fas fa-shopping-bag"></i></div>
             <div class="logo-text">
               <h1>SHREE SHYAM</h1>
-              <span>ADMIN PANEL</span>
+              <span>ADMIN & KHATA</span>
             </div>
           </a>
           <span class="badge badge-stock" style="background:var(--success-green); font-size:0.75rem;"><i class="fas fa-check-circle"></i> Govt MSME Registered (UDYAM-BR-23-0126667)</span>
@@ -100,88 +118,166 @@
           <button id="admin-logout-btn" class="btn btn-sm" style="background:var(--danger-red); color:#FFF;"><i class="fas fa-sign-out-alt"></i> Logout</button>
         </div>
       </div>
+
+      <!-- 5-Tab Navigation Bar -->
+      <div class="container" style="margin-top:0.75rem;">
+        <div style="display:flex; gap:0.5rem; border-bottom:1px solid var(--border-color); overflow-x:auto;">
+          <button id="tab-btn-overview" class="admin-tab-btn active" onclick="switchAdminTab('overview')"><i class="fas fa-chart-pie"></i> Overview</button>
+          <button id="tab-btn-products" class="admin-tab-btn" onclick="switchAdminTab('products')"><i class="fas fa-boxes-stacked"></i> Products Catalog</button>
+          <button id="tab-btn-khata" class="admin-tab-btn" onclick="switchAdminTab('khata')"><i class="fas fa-book-journal-whills"></i> OkCredit Khata Manager</button>
+          <button id="tab-btn-gallery" class="admin-tab-btn" onclick="switchAdminTab('gallery')"><i class="fas fa-images"></i> Gallery Manager</button>
+          <button id="tab-btn-lic" class="admin-tab-btn" onclick="switchAdminTab('lic')"><i class="fas fa-user-shield"></i> LIC Agency Leads</button>
+        </div>
+      </div>
     </header>
 
     <!-- Admin Body -->
     <main class="section-padding">
       <div class="container">
-        
-        <!-- Metrics Row -->
-        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:1.5rem; margin-bottom:2.5rem;">
-          
-          <div style="background:var(--bg-card); border:1px solid var(--border-color); padding:1.5rem; border-radius:var(--radius-lg); box-shadow:var(--shadow-xs); display:flex; align-items:center; justify-content:space-between;">
-            <div>
-              <div style="font-size:0.85rem; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Total Products</div>
-              <div id="metric-total-prod" style="font-size:2.2rem; font-weight:900; color:var(--primary-blue-light); font-family:var(--font-poppins);">0</div>
-            </div>
-            <i class="fas fa-boxes-stacked" style="font-size:2.5rem; color:var(--primary-blue); opacity:0.3;"></i>
-          </div>
 
-          <div style="background:var(--bg-card); border:1px solid var(--border-color); padding:1.5rem; border-radius:var(--radius-lg); box-shadow:var(--shadow-xs); display:flex; align-items:center; justify-content:space-between;">
-            <div>
-              <div style="font-size:0.85rem; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Out of Stock</div>
-              <div id="metric-out-stock" style="font-size:2.2rem; font-weight:900; color:var(--danger-red); font-family:var(--font-poppins);">0</div>
-            </div>
-            <i class="fas fa-exclamation-circle" style="font-size:2.5rem; color:var(--danger-red); opacity:0.3;"></i>
-          </div>
-
-          <div style="background:var(--bg-card); border:1px solid var(--border-color); padding:1.5rem; border-radius:var(--radius-lg); box-shadow:var(--shadow-xs); display:flex; align-items:center; justify-content:space-between;">
-            <div>
-              <div style="font-size:0.85rem; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Active Offers & Deals</div>
-              <div id="metric-offers" style="font-size:2.2rem; font-weight:900; color:var(--accent-gold); font-family:var(--font-poppins);">0</div>
-            </div>
-            <i class="fas fa-tags" style="font-size:2.5rem; color:var(--accent-gold); opacity:0.3;"></i>
-          </div>
-
-          <div style="background:var(--bg-card); border:1px solid var(--border-color); padding:1.5rem; border-radius:var(--radius-lg); box-shadow:var(--shadow-xs); display:flex; flex-direction:column; justify-content:center; gap:0.5rem;">
-            <button class="btn btn-gold btn-sm" onclick="exportUpdatedJson()"><i class="fas fa-file-export"></i> 1-Click Export products.json</button>
-            <button class="btn btn-outline btn-sm" onclick="resetAdminProductsToDefault()"><i class="fas fa-undo"></i> Reset to Default</button>
-          </div>
-
-        </div>
-
-        <!-- Controls & Add Product Bar -->
-        <div style="background:var(--bg-card); border:1px solid var(--border-color); padding:1.25rem; border-radius:var(--radius-md); margin-bottom:1.5rem; display:flex; flex-wrap:wrap; gap:1rem; justify-content:space-between; align-items:center;">
-          <div style="display:flex; gap:1rem; flex:1; min-width:280px;">
-            <input type="text" id="admin-search-input" placeholder="Search product name, brand, or code..." style="padding:0.6rem 1rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main); flex:1;">
+        <!-- TAB 1: OVERVIEW DASHBOARD -->
+        <div id="tab-content-overview" class="admin-tab-content" style="display:block;">
+          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:1.5rem; margin-bottom:2.5rem;">
             
-            <select id="admin-category-select" style="padding:0.6rem 1rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main); font-weight:600;">
-              <option value="all">All Categories</option>
-              <option value="groceries">Groceries</option>
-              <option value="snacks">Snacks</option>
-              <option value="cold-drinks">Cold Drinks</option>
-              <option value="biscuits">Biscuits</option>
-              <option value="daily-use">Daily Use</option>
-              <option value="personal-care">Personal Care</option>
-              <option value="cleaning">Cleaning</option>
-              <option value="stationery">Stationery</option>
-              <option value="printing">Printing</option>
-              <option value="aadhaar-print">Aadhaar PVC Card</option>
-              <option value="lic-services">LIC Services</option>
-            </select>
+            <div style="background:var(--bg-card); border:1px solid var(--border-color); padding:1.5rem; border-radius:var(--radius-lg); box-shadow:var(--shadow-xs); display:flex; align-items:center; justify-content:space-between;">
+              <div>
+                <div style="font-size:0.85rem; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Total Products</div>
+                <div id="metric-total-prod" style="font-size:2.2rem; font-weight:900; color:var(--primary-blue-light); font-family:var(--font-poppins);">0</div>
+              </div>
+              <i class="fas fa-boxes-stacked" style="font-size:2.5rem; color:var(--primary-blue); opacity:0.3;"></i>
+            </div>
+
+            <div style="background:var(--bg-card); border:1px solid var(--border-color); padding:1.5rem; border-radius:var(--radius-lg); box-shadow:var(--shadow-xs); display:flex; align-items:center; justify-content:space-between;">
+              <div>
+                <div style="font-size:0.85rem; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Out of Stock</div>
+                <div id="metric-out-stock" style="font-size:2.2rem; font-weight:900; color:var(--danger-red); font-family:var(--font-poppins);">0</div>
+              </div>
+              <i class="fas fa-exclamation-circle" style="font-size:2.5rem; color:var(--danger-red); opacity:0.3;"></i>
+            </div>
+
+            <div style="background:var(--bg-card); border:1px solid var(--border-color); padding:1.5rem; border-radius:var(--radius-lg); box-shadow:var(--shadow-xs); display:flex; align-items:center; justify-content:space-between;">
+              <div>
+                <div style="font-size:0.85rem; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Active Offers & Deals</div>
+                <div id="metric-offers" style="font-size:2.2rem; font-weight:900; color:var(--accent-gold); font-family:var(--font-poppins);">0</div>
+              </div>
+              <i class="fas fa-tags" style="font-size:2.5rem; color:var(--accent-gold); opacity:0.3;"></i>
+            </div>
+
+            <div style="background:var(--bg-card); border:1px solid var(--border-color); padding:1.5rem; border-radius:var(--radius-lg); box-shadow:var(--shadow-xs); display:flex; align-items:center; justify-content:space-between;">
+              <div>
+                <div style="font-size:0.85rem; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Total Khata Balance (बाकी)</div>
+                <div id="metric-khata-due" style="font-size:2.2rem; font-weight:900; color:var(--danger-red); font-family:var(--font-poppins);">₹0</div>
+              </div>
+              <i class="fas fa-book-journal-whills" style="font-size:2.5rem; color:var(--danger-red); opacity:0.3;"></i>
+            </div>
+
           </div>
 
-          <button class="btn btn-primary" onclick="openAddProductModal()"><i class="fas fa-plus-circle"></i> Add New Product</button>
+          <div style="background:var(--bg-card); border:1px solid var(--border-color); padding:2rem; border-radius:var(--radius-lg); text-align:center;">
+            <h3 style="font-size:1.4rem; font-weight:800; margin-bottom:0.5rem;">Welcome Kaushal Tiwari ji & Kiran Devi ji!</h3>
+            <p style="color:var(--text-muted); max-width:600px; margin:0 auto 1.5rem auto;">Use the top navigation tabs to manage products, record customer Khata Jama/Udhar, update photo gallery, and track LIC agency leads.</p>
+            <div style="display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;">
+              <button class="btn btn-primary" onclick="switchAdminTab('products')"><i class="fas fa-box-open"></i> Manage Products</button>
+              <button class="btn btn-gold" onclick="switchAdminTab('khata')"><i class="fas fa-book"></i> Open OkCredit Khata</button>
+              <button class="btn btn-outline" onclick="exportUpdatedJson()"><i class="fas fa-file-export"></i> 1-Click Export products.json</button>
+            </div>
+          </div>
         </div>
 
-        <!-- Admin Product Table -->
-        <div style="overflow-x:auto;">
-          <table class="admin-table">
-            <thead>
-              <tr>
-                <th>Image</th>
-                <th>Product Name & Hindi</th>
-                <th>Category</th>
-                <th>Price / MRP</th>
-                <th>Discount</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody id="admin-products-tbody">
+        <!-- TAB 2: PRODUCTS CATALOG MANAGER -->
+        <div id="tab-content-products" class="admin-tab-content" style="display:none;">
+          <div style="background:var(--bg-card); border:1px solid var(--border-color); padding:1.25rem; border-radius:var(--radius-md); margin-bottom:1.5rem; display:flex; flex-wrap:wrap; gap:1rem; justify-content:space-between; align-items:center;">
+            <div style="display:flex; gap:1rem; flex:1; min-width:280px;">
+              <input type="text" id="admin-search-input" placeholder="Search product name, brand, or code..." style="padding:0.6rem 1rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main); flex:1;">
+              
+              <select id="admin-category-select" style="padding:0.6rem 1rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main); font-weight:600;">
+                <option value="all">All Categories</option>
+                <option value="groceries">Groceries</option>
+                <option value="snacks">Snacks</option>
+                <option value="cold-drinks">Cold Drinks</option>
+                <option value="biscuits">Biscuits</option>
+                <option value="daily-use">Daily Use</option>
+                <option value="personal-care">Personal Care</option>
+                <option value="cleaning">Cleaning</option>
+                <option value="stationery">Stationery</option>
+                <option value="printing">Printing</option>
+                <option value="aadhaar-print">Aadhaar PVC Card</option>
+                <option value="lic-services">LIC Services</option>
+              </select>
+            </div>
+
+            <button class="btn btn-primary" onclick="openAddProductModal()"><i class="fas fa-plus-circle"></i> Add New Product</button>
+          </div>
+
+          <div style="overflow-x:auto;">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Image</th>
+                  <th>Product Name & Hindi</th>
+                  <th>Category</th>
+                  <th>Price / MRP</th>
+                  <th>Discount</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="admin-products-tbody">
+                <!-- Rendered by admin.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TAB 3: OKCREDIT KHATA MANAGER -->
+        <div id="tab-content-khata" class="admin-tab-content" style="display:none;">
+          <div style="display:grid; grid-template-columns: 1fr 2fr; gap:1.5rem;">
+            <!-- Customers Sidebar -->
+            <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-lg); overflow:hidden;">
+              <div style="padding:1rem; border-bottom:1px solid var(--border-color); display:flex; justify-content:space-between; align-items:center;">
+                <h3 style="font-size:1.1rem; font-weight:800;"><i class="fas fa-users"></i> Khata Customers</h3>
+                <button class="btn btn-primary btn-sm" onclick="openAddCustomerModal()"><i class="fas fa-user-plus"></i> Add</button>
+              </div>
+              <div id="khata-customer-list" style="max-height:550px; overflow-y:auto; padding:0.5rem;">
+                <!-- Rendered by admin.js -->
+              </div>
+            </div>
+
+            <!-- Customer Ledger Detail Pane -->
+            <div id="khata-customer-details">
               <!-- Rendered by admin.js -->
-            </tbody>
-          </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 4: GALLERY MANAGER -->
+        <div id="tab-content-gallery" class="admin-tab-content" style="display:none;">
+          <div style="background:var(--bg-card); border:1px solid var(--border-color); padding:1.25rem; border-radius:var(--radius-md); margin-bottom:1.5rem; display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <h3 style="font-size:1.2rem; font-weight:800;">Manage Shop Gallery Photos</h3>
+              <p style="font-size:0.85rem; color:var(--text-muted);">Photos added here appear live on the public photo gallery page.</p>
+            </div>
+            <button class="btn btn-primary" onclick="openAddGalleryModal()"><i class="fas fa-plus-circle"></i> Add New Photo</button>
+          </div>
+
+          <div id="admin-gallery-grid" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap:1.5rem;">
+            <!-- Rendered by admin.js -->
+          </div>
+        </div>
+
+        <!-- TAB 5: LIC AGENCY LEADS -->
+        <div id="tab-content-lic" class="admin-tab-content" style="display:none;">
+          <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:2rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-color); padding-bottom:1rem; margin-bottom:1.5rem;">
+              <div>
+                <h3 style="font-size:1.3rem; font-weight:800;">LIC Agency Client Tracker</h3>
+                <p style="font-size:0.85rem; color:var(--text-muted);">Kiran Devi (LIC Agent Code: 01649/53H) • Motipur Office Branch</p>
+              </div>
+              <a href="https://wa.me/917254931284" target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> Open LIC WhatsApp (7254931284)</a>
+            </div>
+
+            <p style="color:var(--text-secondary); font-size:0.95rem;">Clients submitting policy consultation requests on the website get directed straight to Kiran Devi ji's WhatsApp helpline.</p>
+          </div>
         </div>
 
       </div>
@@ -273,9 +369,93 @@
     </div>
   </div>
 
+  <!-- ADD KHATA CUSTOMER MODAL -->
+  <div id="add-cust-modal" class="modal-overlay">
+    <div class="quickview-modal" style="max-width:450px; padding:2rem;">
+      <button class="close-modal-btn" onclick="closeAddCustomerModal()"><i class="fas fa-times"></i></button>
+      <h3 style="font-size:1.3rem; font-weight:800; margin-bottom:1.25rem;">Add New Khata Customer</h3>
+      <form onsubmit="saveNewKhataCustomer(event)">
+        <div style="margin-bottom:1rem;">
+          <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:0.3rem;">Customer Full Name *</label>
+          <input type="text" id="khata-cust-name" required placeholder="e.g. Ramesh Kumar" style="width:100%; padding:0.6rem 0.8rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main);">
+        </div>
+        <div style="margin-bottom:1rem;">
+          <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:0.3rem;">Mobile Number *</label>
+          <input type="tel" id="khata-cust-mobile" required placeholder="10-digit mobile number" style="width:100%; padding:0.6rem 0.8rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main);">
+        </div>
+        <div style="margin-bottom:1rem;">
+          <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:0.3rem;">Address</label>
+          <input type="text" id="khata-cust-address" placeholder="Barkagaon Devriya Road..." style="width:100%; padding:0.6rem 0.8rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main);">
+        </div>
+        <div style="margin-bottom:1.5rem;">
+          <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:0.3rem;">Credit Limit (₹)</label>
+          <input type="number" id="khata-cust-limit" value="5000" style="width:100%; padding:0.6rem 0.8rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main);">
+        </div>
+        <div style="display:flex; justify-content:flex-end; gap:1rem;">
+          <button type="button" class="btn btn-outline" onclick="closeAddCustomerModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Customer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- RECORD KHATA TRANSACTION MODAL -->
+  <div id="khata-tx-modal" class="modal-overlay">
+    <div class="quickview-modal" style="max-width:450px; padding:2rem;">
+      <button class="close-modal-btn" onclick="closeKhataTxModal()"><i class="fas fa-times"></i></button>
+      <h3 id="tx-modal-title" style="font-size:1.3rem; font-weight:800; margin-bottom:1.25rem;">Record Transaction</h3>
+      <form onsubmit="saveKhataTransaction(event)">
+        <div style="margin-bottom:1rem;">
+          <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:0.3rem;">Amount (₹) *</label>
+          <input type="number" id="khata-tx-amount" required min="1" step="1" placeholder="e.g. 500" style="width:100%; padding:0.6rem 0.8rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main); font-size:1.2rem; font-weight:700;">
+        </div>
+        <div style="margin-bottom:1.5rem;">
+          <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:0.3rem;">Item Details / Note</label>
+          <input type="text" id="khata-tx-note" placeholder="e.g. Grocery items / Cash payment" style="width:100%; padding:0.6rem 0.8rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main);">
+        </div>
+        <div style="display:flex; justify-content:flex-end; gap:1rem;">
+          <button type="button" class="btn btn-outline" onclick="closeKhataTxModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary"><i class="fas fa-check-circle"></i> Save Entry</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ADD GALLERY PHOTO MODAL -->
+  <div id="add-gallery-modal" class="modal-overlay">
+    <div class="quickview-modal" style="max-width:450px; padding:2rem;">
+      <button class="close-modal-btn" onclick="closeAddGalleryModal()"><i class="fas fa-times"></i></button>
+      <h3 style="font-size:1.3rem; font-weight:800; margin-bottom:1.25rem;">Add New Shop Photo</h3>
+      <form onsubmit="saveNewGalleryPhoto(event)">
+        <div style="margin-bottom:1rem;">
+          <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:0.3rem;">Photo Title *</label>
+          <input type="text" id="gal-title" required placeholder="e.g. New Counter Display" style="width:100%; padding:0.6rem 0.8rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main);">
+        </div>
+        <div style="margin-bottom:1rem;">
+          <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:0.3rem;">Category</label>
+          <select id="gal-category" style="width:100%; padding:0.6rem 0.8rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main); font-weight:600;">
+            <option value="Store">Store Exterior / Interior</option>
+            <option value="Services">Services Counter</option>
+            <option value="Products">Featured Product Display</option>
+            <option value="LIC">LIC Agency Corner</option>
+          </select>
+        </div>
+        <div style="margin-bottom:1.5rem;">
+          <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:0.3rem;">Image URL / Path *</label>
+          <input type="text" id="gal-img-url" required placeholder="assets/images/shop_exterior.jpg or https://..." style="width:100%; padding:0.6rem 0.8rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main);">
+        </div>
+        <div style="display:flex; justify-content:flex-end; gap:1rem;">
+          <button type="button" class="btn btn-outline" onclick="closeAddGalleryModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary"><i class="fas fa-upload"></i> Add Photo</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <script src="js/main.js"></script>
   <script src="js/cart.js"></script>
   <script src="js/products.js"></script>
+  <script src="js/khata.js"></script>
   <script src="js/admin.js"></script>
 </body>
 </html>

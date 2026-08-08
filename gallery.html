@@ -85,12 +85,13 @@
   <div class="top-bar">
     <div class="container top-bar-container">
       <div class="top-info">
-        <span><i class="fas fa-map-marker-alt"></i> Store: Barkagaon Devriya Road, In front of Tiwari Niwash Bhawan</span>
-        <span><i class="fas fa-phone-alt"></i> Call Store: <a href="tel:7352383419">7352383419</a></span>
+        <span><i class="fas fa-map-marker-alt"></i> Store: Barkagaon Devriya Road (In front of Tiwari Niwash Bhawan)</span>
+        <span><i class="fas fa-phone-alt"></i> Store: <a href="tel:7352383419">7352383419</a></span>
         <span><i class="fas fa-certificate"></i> MSME Govt Reg: UDYAM-BR-23-0126667</span>
       </div>
-      <div class="top-actions">
+      <div class="top-actions" style="display:flex; gap:1rem; align-items:center;">
         <span class="font-hindi" style="color: var(--accent-gold-light); font-weight:700;">आपकी जरूरत, हमारा वादा</span>
+        <a href="admin.html" style="background:rgba(245,158,11,0.25); color:var(--accent-gold-light); padding:0.25rem 0.75rem; border-radius:var(--radius-sm); font-weight:700; font-size:0.8rem;"><i class="fas fa-lock"></i> Admin Panel</a>
       </div>
     </div>
   </div>
@@ -217,19 +218,36 @@
     </div>
   </aside>
 
-  <!-- Floating Buttons -->
-  <div class="floating-actions">
-    <a href="https://wa.me/917352383419" class="float-btn float-whatsapp" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-    <a href="tel:7352383419" class="float-btn float-call" aria-label="Call Store"><i class="fas fa-phone-alt"></i></a>
+  <!-- Mobile Bottom App Nav Bar -->
+  <div class="mobile-bottom-nav">
+    <a href="index.html" class="mobile-nav-item">
+      <i class="fas fa-home"></i>
+      <span>Home</span>
+    </a>
+    <a href="products.html" class="mobile-nav-item">
+      <i class="fas fa-store"></i>
+      <span>Products</span>
+    </a>
+    <a href="rashan.html" class="mobile-nav-item">
+      <i class="fas fa-scroll"></i>
+      <span>Rashan</span>
+    </a>
+    <a href="services.html" class="mobile-nav-item">
+      <i class="fas fa-print"></i>
+      <span>Print Desk</span>
+    </a>
+    <a href="https://wa.me/917352383419" class="mobile-nav-item" target="_blank" style="color:#25D366;">
+      <i class="fab fa-whatsapp"></i>
+      <span>WhatsApp</span>
+    </a>
   </div>
 
   <script src="js/main.js"></script>
   <script src="js/cart.js"></script>
   <script src="js/search.js"></script>
-  <script src="js/animation.js"></script>
 
   <script>
-    const galleryData = [
+    const defaultGalleryData = [
       { title: "Store Front & Exterior Signboard", category: "Store", img: "assets/images/shop_exterior.jpg" },
       { title: "Supermarket Aisles & Groceries", category: "Store", img: "assets/banners/hero_banner.jpg" },
       { title: "Digital Photo Printing & Xerox Desk", category: "Services", img: "assets/images/printing_service.jpg" },
@@ -241,6 +259,9 @@
     document.addEventListener('DOMContentLoaded', () => {
       const container = document.getElementById('gallery-grid-container');
       if (container) {
+        const customGallery = JSON.parse(localStorage.getItem('sse_custom_gallery')) || [];
+        const galleryData = [...customGallery, ...defaultGalleryData];
+
         container.innerHTML = galleryData.map((item) => `
           <div class="gallery-card reveal-on-scroll" onclick="openLightbox('${item.img}')">
             <img src="${item.img}" alt="${item.title}">

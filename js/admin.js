@@ -1,10 +1,11 @@
 /* ==========================================================================
-   SHREE SHYAM ENTERPRISES - ADMIN CONTROL PANEL ENGINE (admin.js)
+   SHREE SHYAM ENTERPRISES - SUPERCHARGED 5-TAB ADMIN ENGINE (js/admin.js)
    ========================================================================== */
 
 const ADMIN_PASSCODE = "431242178704";
 let adminProducts = [];
 let editingProductId = null;
+let activeAdminTab = 'overview';
 
 document.addEventListener('DOMContentLoaded', async () => {
   initAdminAuth();
@@ -17,7 +18,6 @@ function initAdminAuth() {
   const loginBtn = document.getElementById('admin-login-btn');
   const logoutBtn = document.getElementById('admin-logout-btn');
 
-  // Check if session authenticated
   const isAuth = sessionStorage.getItem('sse_admin_auth');
   if (isAuth === 'true') {
     if (loginSection) loginSection.style.display = 'none';
@@ -54,15 +54,34 @@ function initAdminAuth() {
 async function loadAdminDashboard() {
   const { products } = await loadProductData();
   adminProducts = products;
+  
   renderAdminMetrics();
   renderAdminTable(adminProducts);
   initAdminFilters();
+  renderKhataTab();
+  renderGalleryTab();
+}
+
+function switchAdminTab(tabName) {
+  activeAdminTab = tabName;
+  document.querySelectorAll('.admin-tab-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelectorAll('.admin-tab-content').forEach(content => content.style.display = 'none');
+
+  const targetBtn = document.getElementById(`tab-btn-${tabName}`);
+  const targetContent = document.getElementById(`tab-content-${tabName}`);
+
+  if (targetBtn) targetBtn.classList.add('active');
+  if (targetContent) targetContent.style.display = 'block';
+
+  if (tabName === 'khata') renderKhataTab();
+  if (tabName === 'gallery') renderGalleryTab();
 }
 
 function renderAdminMetrics() {
   const totalEl = document.getElementById('metric-total-prod');
   const outStockEl = document.getElementById('metric-out-stock');
   const offersEl = document.getElementById('metric-offers');
+  const khataDueEl = document.getElementById('metric-khata-due');
 
   if (totalEl) totalEl.textContent = adminProducts.length;
   if (outStockEl) {
@@ -73,14 +92,26 @@ function renderAdminMetrics() {
     const offerCount = adminProducts.filter(p => p.discount && p.discount !== 'MRP').length;
     offersEl.textContent = offerCount;
   }
+  if (khataDueEl) {
+    const customers = KhataEngine.getCustomers();
+    let totalDue = 0;
+    customers.forEach(c => {
+      const summary = KhataEngine.getCustomerSummary(c.id);
+      totalDue += Math.max(0, summary.netDue);
+    });
+    khataDueEl.textContent = `₹${totalDue}`;
+  }
 }
 
+/* --------------------------------------------------------------------------
+   PRODUCTS TAB LOGIC
+   -------------------------------------------------------------------------- */
 function renderAdminTable(productsList) {
   const tbody = document.getElementById('admin-products-tbody');
   if (!tbody) return;
 
   if (productsList.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="7" class="text-center" style="padding:2rem;">No products found matching your search.</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="7" class="text-center" style="padding:2rem;">No products found matching search.</td></tr>`;
     return;
   }
 
@@ -99,8 +130,8 @@ function renderAdminTable(productsList) {
         <td style="padding:0.75rem;"><span class="badge ${p.availability === 'out-of-stock' ? 'badge-discount' : 'badge-stock'}">${p.availability || 'in-stock'}</span></td>
         <td style="padding:0.75rem;">
           <div style="display:flex; gap:0.5rem;">
-            <button class="btn btn-outline btn-sm" onclick="editProductModal('${p.id}')" title="Edit Product"><i class="fas fa-edit"></i> Edit</button>
-            <button class="btn btn-sm" onclick="deleteProduct('${p.id}')" style="background:var(--danger-red); color:#FFF;" title="Delete Product"><i class="fas fa-trash-alt"></i> Delete</button>
+            <button class="btn btn-outline btn-sm" onclick="editProductModal('${p.id}')"><i class="fas fa-edit"></i> Edit</button>
+            <button class="btn btn-sm" onclick="deleteProduct('${p.id}')" style="background:var(--danger-red); color:#FFF;"><i class="fas fa-trash-alt"></i> Delete</button>
           </div>
         </td>
       </tr>
@@ -181,7 +212,6 @@ function saveProductFromForm(e) {
   const imageUrl = document.getElementById('adm-image-url').value.trim() || 'assets/products/grocery_atta.jpg';
   const description = document.getElementById('adm-desc').value.trim();
 
-  // Auto calculate discount label
   let discountStr = 'MRP';
   if (mrp > price) {
     const diffPct = (((mrp - price) / mrp) * 100).toFixed(1);
@@ -209,14 +239,10 @@ function saveProductFromForm(e) {
     if (index > -1) adminProducts[index] = updatedProd;
 
     const customIdx = customProducts.findIndex(p => String(p.id).trim() === editIdStr);
-    if (customIdx > -1) {
-      customProducts[customIdx] = updatedProd;
-    } else {
-      customProducts.push(updatedProd);
-    }
+    if (customIdx > -1) customProducts[customIdx] = updatedProd;
+    else customProducts.push(updatedProd);
 
   } else {
-    // Create New Product
     const newId = `prod-cust-${Date.now()}`;
     const newProduct = {
       id: newId,
@@ -262,7 +288,6 @@ function deleteProduct(productId) {
   }
 }
 
-// 1-Click Export JSON File for Backup/Deployment
 function exportUpdatedJson() {
   const jsonStr = JSON.stringify(adminProducts, null, 2);
   const blob = new Blob([jsonStr], { type: 'application/json' });
@@ -277,19 +302,266 @@ function exportUpdatedJson() {
   showToast('products.json Exported! Replace data/products.json to save permanently.', 'success');
 }
 
-// Reset Catalog to Original
-function resetAdminProductsToDefault() {
-  if (confirm('Reset custom changes and restore default products catalog?')) {
-    localStorage.removeItem('sse_custom_products');
-    localStorage.removeItem('sse_deleted_products');
-    window.location.reload();
+/* --------------------------------------------------------------------------
+   OKCREDIT KHATA TAB LOGIC
+   -------------------------------------------------------------------------- */
+let selectedKhataCustId = null;
+
+function renderKhataTab() {
+  const customers = KhataEngine.getCustomers();
+  const custContainer = document.getElementById('khata-customer-list');
+  const detailsContainer = document.getElementById('khata-customer-details');
+
+  if (!custContainer) return;
+
+  if (customers.length === 0) {
+    custContainer.innerHTML = `<p style="padding:1rem; color:var(--text-muted);">No khata customers added yet.</p>`;
+    return;
+  }
+
+  custContainer.innerHTML = customers.map(c => {
+    const summary = KhataEngine.getCustomerSummary(c.id);
+    const isDue = summary.netDue > 0;
+    return `
+      <div onclick="selectKhataCustomer('${c.id}')" style="display:flex; align-items:center; gap:0.75rem; padding:0.85rem; border-bottom:1px solid var(--border-color); cursor:pointer; background:${selectedKhataCustId === c.id ? 'var(--primary-blue-light)' : 'transparent'}; color:${selectedKhataCustId === c.id ? '#FFF' : 'inherit'}; border-radius:var(--radius-sm);">
+        <img src="${c.avatar}" style="width:45px; height:45px; border-radius:50%; object-fit:cover; border:1px solid var(--border-color);">
+        <div style="flex:1;">
+          <strong style="display:block; font-size:0.95rem;">${c.name}</strong>
+          <span style="font-size:0.8rem; opacity:0.8;">${c.mobile}</span>
+        </div>
+        <div style="text-align:right;">
+          <span style="font-weight:900; font-size:1rem; color:${isDue ? (selectedKhataCustId === c.id ? '#FFD700' : 'var(--danger-red)') : 'var(--success-green)'};">₹${summary.netDue}</span>
+          <span style="display:block; font-size:0.7rem; opacity:0.7;">${isDue ? 'Due (बाकी)' : 'Clear'}</span>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  if (!selectedKhataCustId && customers.length > 0) {
+    selectedKhataCustId = customers[0].id;
+  }
+
+  if (selectedKhataCustId) {
+    renderKhataCustomerDetails(selectedKhataCustId);
   }
 }
 
-window.openAddProductModal = openAddProductModal;
-window.editProductModal = editProductModal;
-window.closeAdminProductModal = closeAdminProductModal;
-window.saveProductFromForm = saveProductFromForm;
-window.deleteProduct = deleteProduct;
-window.exportUpdatedJson = exportUpdatedJson;
-window.resetAdminProductsToDefault = resetAdminProductsToDefault;
+function selectKhataCustomer(id) {
+  selectedKhataCustId = id;
+  renderKhataTab();
+}
+
+function renderKhataCustomerDetails(id) {
+  const customers = KhataEngine.getCustomers();
+  const cust = customers.find(c => c.id === id);
+  const container = document.getElementById('khata-customer-details');
+
+  if (!cust || !container) return;
+
+  const summary = KhataEngine.getCustomerSummary(id);
+  const txs = KhataEngine.getTransactions().filter(t => t.customerId === id);
+  const waUrl = KhataEngine.generateWhatsAppReminderLink(id);
+
+  container.innerHTML = `
+    <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:1.5rem;">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-color); padding-bottom:1rem; margin-bottom:1.25rem; flex-wrap:wrap; gap:1rem;">
+        <div style="display:flex; align-items:center; gap:1rem;">
+          <img src="${cust.avatar}" style="width:60px; height:60px; border-radius:50%; object-fit:cover; border:2px solid var(--primary-blue-light);">
+          <div>
+            <h3 style="font-size:1.3rem; font-weight:800;">${cust.name}</h3>
+            <span style="font-size:0.85rem; color:var(--text-muted);"><i class="fas fa-phone-alt"></i> ${cust.mobile} • ${cust.address || 'Barkagaon'}</span>
+          </div>
+        </div>
+
+        <a href="${waUrl}" target="_blank" class="btn btn-whatsapp btn-sm"><i class="fab fa-whatsapp"></i> Send WhatsApp Bill & Reminder</a>
+      </div>
+
+      <!-- Net Balance Cards -->
+      <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:1rem; margin-bottom:1.5rem;">
+        <div style="background:rgba(239,68,68,0.1); border:1px solid var(--danger-red); padding:1rem; border-radius:var(--radius-md); text-align:center;">
+          <span style="font-size:0.75rem; font-weight:700; color:var(--danger-red); text-transform:uppercase;">Total Udhar (उधार दिया)</span>
+          <div style="font-size:1.5rem; font-weight:900; color:var(--danger-red);">₹${summary.totalUdhar}</div>
+        </div>
+        <div style="background:rgba(34,197,94,0.1); border:1px solid var(--success-green); padding:1rem; border-radius:var(--radius-md); text-align:center;">
+          <span style="font-size:0.75rem; font-weight:700; color:var(--success-green); text-transform:uppercase;">Total Jama (जमा लिया)</span>
+          <div style="font-size:1.5rem; font-weight:900; color:var(--success-green);">₹${summary.totalJama}</div>
+        </div>
+        <div style="background:var(--bg-tertiary); border:1px solid var(--border-color); padding:1rem; border-radius:var(--radius-md); text-align:center;">
+          <span style="font-size:0.75rem; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Net Remaining Due</span>
+          <div style="font-size:1.5rem; font-weight:900; color:var(--primary-blue-light);">₹${summary.netDue}</div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem; margin-bottom:1.5rem;">
+        <button class="btn" style="background:var(--danger-red); color:#FFF; justify-content:center;" onclick="openKhataTransactionModal('${cust.id}', 'udhar')">
+          <i class="fas fa-minus-circle"></i> + Gave Udhar (उधार दिया)
+        </button>
+        <button class="btn" style="background:var(--success-green); color:#FFF; justify-content:center;" onclick="openKhataTransactionModal('${cust.id}', 'jama')">
+          <i class="fas fa-plus-circle"></i> - Received Jama (जमा लिया)
+        </button>
+      </div>
+
+      <!-- Transaction Ledger History -->
+      <h4 style="font-size:1.05rem; font-weight:800; margin-bottom:0.75rem;">Transaction Ledger History</h4>
+      <div style="max-height:300px; overflow-y:auto; border:1px solid var(--border-color); border-radius:var(--radius-md);">
+        ${txs.length === 0 ? `<p style="padding:1rem; text-align:center; color:var(--text-muted);">No transaction entries recorded yet.</p>` :
+          txs.map(t => `
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:0.75rem 1rem; border-bottom:1px solid var(--border-color);">
+              <div>
+                <strong style="display:block; font-size:0.95rem;">${t.note}</strong>
+                <span style="font-size:0.75rem; color:var(--text-muted);">${t.date}</span>
+              </div>
+              <div style="text-align:right;">
+                <span style="font-weight:900; font-size:1.1rem; color:${t.type === 'udhar' ? 'var(--danger-red)' : 'var(--success-green)'};">
+                  ${t.type === 'udhar' ? '+ ₹' : '- ₹'}${t.amount}
+                </span>
+                <span style="display:block; font-size:0.7rem; font-weight:700; text-transform:uppercase; color:${t.type === 'udhar' ? 'var(--danger-red)' : 'var(--success-green)'};">${t.type === 'udhar' ? 'Gave Udhar' : 'Received Jama'}</span>
+              </div>
+            </div>
+          `).join('')
+        }
+      </div>
+    </div>
+  `;
+}
+
+function openAddCustomerModal() {
+  document.getElementById('add-cust-modal').classList.add('active');
+}
+function closeAddCustomerModal() {
+  document.getElementById('add-cust-modal').classList.remove('active');
+}
+
+function saveNewKhataCustomer(e) {
+  e.preventDefault();
+  const name = document.getElementById('khata-cust-name').value.trim();
+  const mobile = document.getElementById('khata-cust-mobile').value.trim();
+  const address = document.getElementById('khata-cust-address').value.trim();
+  const limit = document.getElementById('khata-cust-limit').value || 5000;
+
+  if (!name || !mobile) {
+    showToast('Customer Name and Mobile number are required!', 'danger');
+    return;
+  }
+
+  const newCust = KhataEngine.addCustomer(name, mobile, address, limit);
+  selectedKhataCustId = newCust.id;
+  showToast('New Khata Customer Added!', 'success');
+  closeAddCustomerModal();
+  renderKhataTab();
+  renderAdminMetrics();
+}
+
+let activeTxCustId = null;
+let activeTxType = 'udhar';
+
+function openKhataTransactionModal(custId, type) {
+  activeTxCustId = custId;
+  activeTxType = type;
+
+  document.getElementById('tx-modal-title').textContent = type === 'udhar' ? 'Record Gave Udhar (उधार दिया)' : 'Record Received Jama (जमा लिया)';
+  document.getElementById('khata-tx-amount').value = '';
+  document.getElementById('khata-tx-note').value = '';
+  document.getElementById('khata-tx-modal').classList.add('active');
+}
+function closeKhataTxModal() {
+  document.getElementById('khata-tx-modal').classList.remove('active');
+}
+
+function saveKhataTransaction(e) {
+  e.preventDefault();
+  const amount = parseFloat(document.getElementById('khata-tx-amount').value) || 0;
+  const note = document.getElementById('khata-tx-note').value.trim();
+
+  if (amount <= 0) {
+    showToast('Please enter a valid transaction amount!', 'danger');
+    return;
+  }
+
+  KhataEngine.addTransaction(activeTxCustId, activeTxType, amount, note);
+  showToast(activeTxType === 'udhar' ? 'Udhar Recorded!' : 'Payment Jama Recorded!', 'success');
+  closeKhataTxModal();
+  renderKhataTab();
+  renderAdminMetrics();
+}
+
+/* --------------------------------------------------------------------------
+   GALLERY PHOTO TAB LOGIC
+   -------------------------------------------------------------------------- */
+function getGalleryItems() {
+  return JSON.parse(localStorage.getItem('sse_custom_gallery')) || [
+    { title: "Store Front & Exterior Signboard", category: "Store", img: "assets/images/shop_exterior.jpg" },
+    { title: "Supermarket Aisles & Groceries", category: "Store", img: "assets/banners/hero_banner.jpg" },
+    { title: "Digital Photo Printing & Xerox Desk", category: "Services", img: "assets/images/printing_service.jpg" },
+    { title: "Official LIC Policy Consultation Corner", category: "LIC", img: "assets/banners/lic_banner.jpg" }
+  ];
+}
+
+function renderGalleryTab() {
+  const container = document.getElementById('admin-gallery-grid');
+  if (!container) return;
+
+  const items = getGalleryItems();
+
+  container.innerHTML = items.map((item, idx) => `
+    <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-md); overflow:hidden; position:relative;">
+      <img src="${item.img}" style="width:100%; height:140px; object-fit:cover;">
+      <div style="padding:0.75rem;">
+        <strong style="display:block; font-size:0.9rem;">${item.title}</strong>
+        <span class="badge badge-gold" style="margin-top:0.3rem;">${item.category}</span>
+      </div>
+      <button onclick="deleteGalleryPhoto(${idx})" style="position:absolute; top:8px; right:8px; background:var(--danger-red); color:#FFF; border:none; width:28px; height:28px; border-radius:50%; cursor:pointer;"><i class="fas fa-trash-alt"></i></button>
+    </div>
+  `).join('');
+}
+
+function openAddGalleryModal() {
+  document.getElementById('add-gallery-modal').classList.add('active');
+}
+function closeAddGalleryModal() {
+  document.getElementById('add-gallery-modal').classList.remove('active');
+}
+
+function saveNewGalleryPhoto(e) {
+  e.preventDefault();
+  const title = document.getElementById('gal-title').value.trim();
+  const category = document.getElementById('gal-category').value;
+  const imgUrl = document.getElementById('gal-img-url').value.trim();
+
+  if (!title || !imgUrl) {
+    showToast('Photo Title and Image URL are required!', 'danger');
+    return;
+  }
+
+  const items = getGalleryItems();
+  items.unshift({ title, category, img: imgUrl });
+  localStorage.setItem('sse_custom_gallery', JSON.stringify(items));
+
+  showToast('New Photo Added to Gallery!', 'success');
+  closeAddGalleryModal();
+  renderGalleryTab();
+}
+
+function deleteGalleryPhoto(idx) {
+  if (confirm('Delete this photo from Gallery?')) {
+    const items = getGalleryItems();
+    items.splice(idx, 1);
+    localStorage.setItem('sse_custom_gallery', JSON.stringify(items));
+    showToast('Photo Deleted!', 'info');
+    renderGalleryTab();
+  }
+}
+
+window.switchAdminTab = switchAdminTab;
+window.openAddCustomerModal = openAddCustomerModal;
+window.closeAddCustomerModal = closeAddCustomerModal;
+window.saveNewKhataCustomer = saveNewKhataCustomer;
+window.selectKhataCustomer = selectKhataCustomer;
+window.openKhataTransactionModal = openKhataTransactionModal;
+window.closeKhataTxModal = closeKhataTxModal;
+window.saveKhataTransaction = saveKhataTransaction;
+window.openAddGalleryModal = openAddGalleryModal;
+window.closeAddGalleryModal = closeAddGalleryModal;
+window.saveNewGalleryPhoto = saveNewGalleryPhoto;
+window.deleteGalleryPhoto = deleteGalleryPhoto;

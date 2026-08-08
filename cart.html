@@ -18,12 +18,13 @@
   <div class="top-bar">
     <div class="container top-bar-container">
       <div class="top-info">
-        <span><i class="fas fa-map-marker-alt"></i> Store: Barkagaon Devriya Road, In front of Tiwari Niwash Bhawan</span>
+        <span><i class="fas fa-map-marker-alt"></i> Store: Barkagaon Devriya Road (In front of Tiwari Niwash Bhawan)</span>
         <span><i class="fas fa-phone-alt"></i> Store: <a href="tel:7352383419">7352383419</a></span>
         <span><i class="fas fa-certificate"></i> MSME Govt Reg: UDYAM-BR-23-0126667</span>
       </div>
-      <div class="top-actions">
+      <div class="top-actions" style="display:flex; gap:1rem; align-items:center;">
         <span class="font-hindi" style="color: var(--accent-gold-light); font-weight:700;">आपकी जरूरत, हमारा वादा</span>
+        <a href="admin.html" style="background:rgba(245,158,11,0.25); color:var(--accent-gold-light); padding:0.25rem 0.75rem; border-radius:var(--radius-sm); font-weight:700; font-size:0.8rem;"><i class="fas fa-lock"></i> Admin Panel</a>
       </div>
     </div>
   </div>
@@ -50,6 +51,7 @@
       <nav id="nav-links" class="nav-links">
         <a href="index.html" class="nav-link">Home</a>
         <a href="products.html" class="nav-link">Products</a>
+        <a href="rashan.html" class="nav-link" style="color:var(--accent-gold);"><i class="fas fa-scroll"></i> Rashan Generator</a>
         <a href="services.html" class="nav-link">Services & LIC</a>
         <a href="about.html" class="nav-link">About Us</a>
         <a href="gallery.html" class="nav-link">Gallery</a>
@@ -114,7 +116,7 @@
             </div>
 
             <div style="display:flex; justify-content:space-between; margin-bottom:1.25rem; color:var(--text-secondary);">
-              <span>GST & Taxes (Placeholder):</span>
+              <span>GST & Taxes:</span>
               <strong style="color:var(--text-main);">Included in Price</strong>
             </div>
 
@@ -124,10 +126,6 @@
             </div>
 
             <a href="checkout.html" id="proceed-checkout-btn" class="btn btn-whatsapp btn-lg" style="width:100%; justify-content:center;"><i class="fab fa-whatsapp"></i> Proceed to Order</a>
-            
-            <div style="margin-top:1rem; text-align:center;">
-              <a href="products.html" style="font-size:0.9rem; color:var(--primary-blue-light); font-weight:600;"><i class="fas fa-arrow-left"></i> Continue Shopping</a>
-            </div>
           </div>
         </div>
       </div>
@@ -136,60 +134,34 @@
 
   <!-- Footer -->
   <footer>
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-col-about">
-          <h3>SHREE SHYAM ENTERPRISES</h3>
-          <p class="font-hindi" style="color:var(--accent-gold); font-size:1.1rem; font-weight:700;">"आपकी जरूरत, हमारा वादा"</p>
-        </div>
-        <div class="footer-col">
-          <h4>Quick Links</h4>
-          <ul class="footer-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="products.html">Products</a></li>
-            <li><a href="services.html">Services & LIC</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
-            <li><a href="admin.html">Admin Panel</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Store Address</h4>
-          <ul class="footer-links">
-            <li>Barkagaon Devriya Road, In front of Tiwari Niwash Bhawan, Muzaffarpur</li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Contact Info</h4>
-          <ul class="footer-links">
-            <li>Owner: Mr. Kaushal Tiwari (7352383419)</li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 Shree Shyam Enterprises. All Rights Reserved.</p>
-      </div>
+    <div class="container text-center">
+      <p>&copy; 2026 Shree Shyam Enterprises. Barkagaon Devriya Road, Muzaffarpur. All Rights Reserved.</p>
     </div>
   </footer>
 
-  <!-- Slide Cart Drawer -->
-  <div id="cart-drawer-overlay" class="cart-drawer-overlay"></div>
-  <aside id="cart-drawer" class="cart-drawer">
-    <div class="cart-drawer-header">
-      <h3><i class="fas fa-shopping-basket" style="color:var(--primary-blue-light);"></i> Your Shopping Cart</h3>
-      <button id="close-drawer-btn" class="close-drawer-btn" aria-label="Close Cart"><i class="fas fa-times"></i></button>
-    </div>
-    <div id="cart-drawer-items" class="cart-drawer-body"></div>
-    <div class="cart-drawer-footer">
-      <div class="cart-summary-row cart-summary-total">
-        <span>Subtotal Amount:</span>
-        <span id="cart-drawer-subtotal">₹0</span>
-      </div>
-      <div class="cart-drawer-actions">
-        <a href="cart.html" class="btn btn-outline">View Full Cart</a>
-        <a href="checkout.html" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> Checkout</a>
-      </div>
-    </div>
-  </aside>
+  <!-- Mobile Bottom App Nav Bar -->
+  <div class="mobile-bottom-nav">
+    <a href="index.html" class="mobile-nav-item">
+      <i class="fas fa-home"></i>
+      <span>Home</span>
+    </a>
+    <a href="products.html" class="mobile-nav-item">
+      <i class="fas fa-store"></i>
+      <span>Products</span>
+    </a>
+    <a href="rashan.html" class="mobile-nav-item">
+      <i class="fas fa-scroll"></i>
+      <span>Rashan</span>
+    </a>
+    <a href="services.html" class="mobile-nav-item">
+      <i class="fas fa-print"></i>
+      <span>Print Desk</span>
+    </a>
+    <a href="https://wa.me/917352383419" class="mobile-nav-item" target="_blank" style="color:#25D366;">
+      <i class="fab fa-whatsapp"></i>
+      <span>WhatsApp</span>
+    </a>
+  </div>
 
   <script src="js/main.js"></script>
   <script src="js/cart.js"></script>
@@ -214,7 +186,6 @@
           <div class="text-center" style="padding: 3rem 1rem;">
             <i class="fas fa-shopping-basket" style="font-size: 3.5rem; color:var(--text-muted); margin-bottom:1rem;"></i>
             <h3>Your Cart is Currently Empty</h3>
-            <p style="color:var(--text-muted); margin-top:0.5rem;">Explore our high quality groceries, snacks, and stationery!</p>
             <a href="products.html" class="btn btn-primary" style="margin-top:1.5rem;"><i class="fas fa-store"></i> Explore Products</a>
           </div>
         `;
@@ -241,7 +212,6 @@
             <div style="font-size:1.15rem; font-weight:800; min-width:80px; text-align:right;">
               ₹${item.price * item.quantity}
             </div>
-            <button onclick="Cart.saveForLater('${item.id}', '${item.variant}')" style="color:var(--accent-gold-dark);" title="Save For Later"><i class="fas fa-bookmark"></i></button>
             <button onclick="Cart.removeFromCart('${item.id}', '${item.variant}')" style="color:var(--danger-red);" title="Remove"><i class="fas fa-trash-alt"></i></button>
           </div>
         </div>
@@ -254,23 +224,6 @@
       if (subtotalEl) subtotalEl.textContent = `₹${subtotal}`;
       if (deliveryEl) deliveryEl.textContent = deliveryFee === 0 ? 'FREE' : `₹${deliveryFee}`;
       if (grandTotalEl) grandTotalEl.textContent = `₹${grandTotal}`;
-
-      const savedListEl = document.getElementById('saved-for-later-list');
-      const savedItems = Cart.getSavedItems();
-      if (savedListEl) {
-        if (savedItems.length === 0) {
-          savedListEl.innerHTML = `<p style="color:var(--text-muted); font-size:0.9rem;">No items saved for later.</p>`;
-        } else {
-          savedListEl.innerHTML = savedItems.map(item => `
-            <div style="display:flex; justify-content:space-between; align-items:center; padding:0.75rem 0; border-bottom:1px solid var(--border-color);">
-              <div>
-                <strong>${item.name}</strong> (${item.variant}) - <span style="color:var(--primary-blue-light); font-weight:700;">₹${item.price}</span>
-              </div>
-              <button class="btn btn-outline btn-sm" onclick="Cart.moveToCart('${item.id}', '${item.variant}')">Move to Cart</button>
-            </div>
-          `).join('');
-        }
-      }
     }
 
     window.renderCartPage = renderFullCartPage;
