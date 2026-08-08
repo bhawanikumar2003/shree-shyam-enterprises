@@ -1,5 +1,5 @@
 /* ==========================================================================
-   SHREE SHYAM ENTERPRISES - PRODUCT DATA LOADER & RENDERER (products.js)
+   SHREE SHYAM ENTERPRISES - PRODUCT DATA LOADER & RENDERER (js/products.js)
    ========================================================================== */
 
 let productsCache = [];
@@ -7,8 +7,8 @@ let categoriesCache = [];
 
 async function loadProductData() {
   try {
-    // Add timestamp cache-buster so browser never serves stale products.json
-    const cacheBuster = `?t=${Date.now()}`;
+    // Cache buster timestamp to prevent stale browser caching
+    const cacheBuster = `?v=${Date.now()}`;
     const [prodRes, catRes] = await Promise.all([
       fetch('data/products.json' + cacheBuster, { cache: 'no-store' }),
       fetch('data/categories.json' + cacheBuster, { cache: 'no-store' })
@@ -16,14 +16,15 @@ async function loadProductData() {
     const jsonProducts = await prodRes.json();
     categoriesCache = await catRes.json();
 
-    // Get any custom or edited products stored in LocalStorage by Admin
+    // Retrieve custom products saved in LocalStorage by Admin
     const customProducts = JSON.parse(localStorage.getItem('sse_custom_products')) || [];
     const customMap = new Map();
+
     customProducts.forEach(p => {
       if (p && p.id) customMap.set(String(p.id).trim(), p);
     });
 
-    // Replace JSON products with custom edited versions if they exist
+    // Merge JSON products with custom edited versions (Custom versions override defaults)
     let merged = jsonProducts.map(p => {
       const pIdStr = String(p.id).trim();
       const custom = customMap.get(pIdStr);
@@ -41,14 +42,17 @@ async function loadProductData() {
       }
     });
 
-    // Check deleted product IDs
+    // Filter out deleted product IDs
     const deletedIds = new Set((JSON.parse(localStorage.getItem('sse_deleted_products')) || []).map(id => String(id).trim()));
     productsCache = merged.filter(p => !deletedIds.has(String(p.id).trim()));
 
     return { products: productsCache, categories: categoriesCache };
   } catch (error) {
     console.error('Failed to load JSON data:', error);
-    return { products: [], categories: [] };
+    // Safety fallback to LocalStorage custom products if fetch fails
+    const customProducts = JSON.parse(localStorage.getItem('sse_custom_products')) || [];
+    productsCache = customProducts;
+    return { products: productsCache, categories: categoriesCache };
   }
 }
 

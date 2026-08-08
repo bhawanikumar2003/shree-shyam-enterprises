@@ -7,10 +7,10 @@
   
   <meta name="robots" content="noindex, nofollow">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="css/variables.css">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/responsive.css">
-  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/variables.css?v=2.0">
+  <link rel="stylesheet" href="css/style.css?v=2.0">
+  <link rel="stylesheet" href="css/responsive.css?v=2.0">
+  <link rel="stylesheet" href="css/animations.css?v=2.0">
 
   <style>
     .admin-login-wrap {
@@ -176,10 +176,14 @@
           <div style="background:var(--bg-card); border:1px solid var(--border-color); padding:2rem; border-radius:var(--radius-lg); text-align:center;">
             <h3 style="font-size:1.4rem; font-weight:800; margin-bottom:0.5rem;">Welcome Kaushal Tiwari ji & Kiran Devi ji!</h3>
             <p style="color:var(--text-muted); max-width:600px; margin:0 auto 1.5rem auto;">Use the top navigation tabs to manage products, record customer Khata Jama/Udhar, update photo gallery, and track LIC agency leads.</p>
+            
             <div style="display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;">
               <button class="btn btn-primary" onclick="switchAdminTab('products')"><i class="fas fa-box-open"></i> Manage Products</button>
               <button class="btn btn-gold" onclick="switchAdminTab('khata')"><i class="fas fa-book"></i> Open OkCredit Khata</button>
               <button class="btn btn-outline" onclick="exportUpdatedJson()"><i class="fas fa-file-export"></i> 1-Click Export products.json</button>
+              
+              <input type="file" id="import-json-file" accept=".json" style="display:none;" onchange="importJsonProductsFile(event)">
+              <button class="btn btn-outline" onclick="document.getElementById('import-json-file').click()"><i class="fas fa-file-import"></i> Import Backup products.json</button>
             </div>
           </div>
         </div>
@@ -206,7 +210,10 @@
               </select>
             </div>
 
-            <button class="btn btn-primary" onclick="openAddProductModal()"><i class="fas fa-plus-circle"></i> Add New Product</button>
+            <div style="display:flex; gap:0.5rem;">
+              <button class="btn btn-primary" onclick="openAddProductModal()"><i class="fas fa-plus-circle"></i> Add New Product</button>
+              <button class="btn btn-outline btn-sm" onclick="document.getElementById('import-json-file').click()"><i class="fas fa-file-import"></i> Import JSON</button>
+            </div>
           </div>
 
           <div style="overflow-x:auto;">
@@ -452,10 +459,10 @@
     </div>
   </div>
 
-  <script src="js/main.js"></script>
-  <script src="js/cart.js"></script>
-  <script src="js/products.js"></script>
-  <script src="js/khata.js"></script>
-  <script src="js/admin.js"></script>
+  <script src="js/main.js?v=2.0"></script>
+  <script src="js/cart.js?v=2.0"></script>
+  <script src="js/products.js?v=2.0"></script>
+  <script src="js/khata.js?v=2.0"></script>
+  <script src="js/admin.js?v=2.0"></script>
 </body>
 </html>

@@ -288,6 +288,7 @@ function deleteProduct(productId) {
   }
 }
 
+// 1-Click Export JSON File for Backup/Deployment
 function exportUpdatedJson() {
   const jsonStr = JSON.stringify(adminProducts, null, 2);
   const blob = new Blob([jsonStr], { type: 'application/json' });
@@ -300,6 +301,39 @@ function exportUpdatedJson() {
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
   showToast('products.json Exported! Replace data/products.json to save permanently.', 'success');
+}
+
+// Import products.json Backup File to preserve all listing data
+function importJsonProductsFile(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const importedProducts = JSON.parse(e.target.result);
+      if (Array.isArray(importedProducts)) {
+        let customProducts = JSON.parse(localStorage.getItem('sse_custom_products')) || [];
+        const customMap = new Map(customProducts.map(p => [String(p.id).trim(), p]));
+
+        importedProducts.forEach(p => {
+          if (p && p.id) customMap.set(String(p.id).trim(), p);
+        });
+
+        const mergedCustom = Array.from(customMap.values());
+        localStorage.setItem('sse_custom_products', JSON.stringify(mergedCustom));
+
+        showToast(`Successfully imported ${importedProducts.length} products! Refreshing...`, 'success');
+        setTimeout(() => window.location.reload(), 1200);
+      } else {
+        showToast('Invalid JSON file format!', 'danger');
+      }
+    } catch (err) {
+      console.error(err);
+      showToast('Failed to parse JSON file!', 'danger');
+    }
+  };
+  reader.readAsText(file);
 }
 
 /* --------------------------------------------------------------------------
@@ -565,3 +599,5 @@ window.openAddGalleryModal = openAddGalleryModal;
 window.closeAddGalleryModal = closeAddGalleryModal;
 window.saveNewGalleryPhoto = saveNewGalleryPhoto;
 window.deleteGalleryPhoto = deleteGalleryPhoto;
+window.exportUpdatedJson = exportUpdatedJson;
+window.importJsonProductsFile = importJsonProductsFile;
