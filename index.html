@@ -14,10 +14,10 @@
   <meta name="theme-color" content="#1E3A8A">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="css/variables.css?v=2.0">
-  <link rel="stylesheet" href="css/style.css?v=2.0">
-  <link rel="stylesheet" href="css/responsive.css?v=2.0">
-  <link rel="stylesheet" href="css/animations.css?v=2.0">
+  <link rel="stylesheet" href="css/variables.css?v=3.0">
+  <link rel="stylesheet" href="css/style.css?v=3.0">
+  <link rel="stylesheet" href="css/responsive.css?v=3.0">
+  <link rel="stylesheet" href="css/animations.css?v=3.0">
 </head>
 <body>
 
@@ -31,6 +31,7 @@
       </div>
       <div class="top-actions" style="display:flex; gap:1rem; align-items:center;">
         <span class="font-hindi" style="color: var(--accent-gold-light); font-weight:700;">आपकी जरूरत, हमारा वादा</span>
+        <button onclick="triggerAppInstall()" style="background:var(--accent-gold); color:#000; padding:0.25rem 0.75rem; border-radius:var(--radius-sm); font-weight:800; font-size:0.8rem; border:none; cursor:pointer;"><i class="fas fa-download"></i> Install App</button>
         <a href="admin.html" style="background:rgba(245,158,11,0.25); color:var(--accent-gold-light); padding:0.25rem 0.75rem; border-radius:var(--radius-sm); font-weight:700; font-size:0.8rem;"><i class="fas fa-lock"></i> Admin Panel</a>
       </div>
     </div>
@@ -60,7 +61,6 @@
       <nav id="nav-links" class="nav-links">
         <a href="index.html" class="nav-link active">Home</a>
         <a href="products.html" class="nav-link">Products</a>
-        <a href="rashan.html" class="nav-link" style="color:var(--accent-gold);"><i class="fas fa-scroll"></i> Rashan Generator</a>
         <a href="services.html" class="nav-link">Services & LIC</a>
         <a href="about.html" class="nav-link">About Us</a>
         <a href="gallery.html" class="nav-link">Gallery</a>
@@ -102,7 +102,7 @@
 
         <div class="hero-buttons">
           <a href="products.html" class="btn btn-gold btn-lg"><i class="fas fa-shopping-basket"></i> Browse Products</a>
-          <a href="rashan.html" class="btn btn-primary btn-lg"><i class="fas fa-scroll"></i> Monthly Rashan List Generator</a>
+          <button onclick="triggerAppInstall()" class="btn btn-primary btn-lg"><i class="fas fa-mobile-screen-button"></i> Install Mobile App</button>
           <a href="services.html#print-dropzone" class="btn btn-outline btn-lg" style="color:#FFF; border-color:#FFF;"><i class="fas fa-file-upload"></i> Upload File for Printing</a>
         </div>
       </div>
@@ -189,7 +189,6 @@
           <ul class="footer-links">
             <li><a href="index.html">Home Page</a></li>
             <li><a href="products.html">Product Catalog</a></li>
-            <li><a href="rashan.html">Monthly Rashan Generator</a></li>
             <li><a href="services.html">Digital Services</a></li>
             <li><a href="about.html">About Shop Owner</a></li>
             <li><a href="admin.html">Admin Control Panel</a></li>
@@ -245,10 +244,10 @@
       <i class="fas fa-store"></i>
       <span>Products</span>
     </a>
-    <a href="rashan.html" class="mobile-nav-item">
-      <i class="fas fa-scroll"></i>
-      <span>Rashan</span>
-    </a>
+    <button onclick="triggerAppInstall()" class="mobile-nav-item" style="background:transparent; border:none; cursor:pointer;">
+      <i class="fas fa-mobile-screen-button" style="color:var(--accent-gold);"></i>
+      <span style="color:var(--accent-gold);">Install App</span>
+    </button>
     <a href="services.html" class="mobile-nav-item">
       <i class="fas fa-print"></i>
       <span>Print Desk</span>
@@ -259,14 +258,15 @@
     </a>
   </div>
 
-  <!-- JavaScript Scripts with Cache Busters -->
-  <script src="js/main.js?v=2.0"></script>
-  <script src="js/cart.js?v=2.0"></script>
-  <script src="js/products.js?v=2.0"></script>
-  <script src="js/search.js?v=2.0"></script>
-  <script src="js/voice-search.js?v=2.0"></script>
-  <script src="js/tracker.js?v=2.0"></script>
-  <script src="js/animation.js?v=2.0"></script>
+  <!-- JavaScript Scripts -->
+  <script src="js/main.js?v=3.0"></script>
+  <script src="js/cart.js?v=3.0"></script>
+  <script src="js/products.js?v=3.0"></script>
+  <script src="js/search.js?v=3.0"></script>
+  <script src="js/voice-search.js?v=3.0"></script>
+  <script src="js/tracker.js?v=3.0"></script>
+  <script src="js/app-installer.js?v=3.0"></script>
+  <script src="js/animation.js?v=3.0"></script>
 
   <script>
     document.addEventListener('DOMContentLoaded', async () => {

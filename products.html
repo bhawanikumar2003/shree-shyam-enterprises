@@ -3,44 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>All Products & Shop Catalog - Shree Shyam Enterprises</title>
+  <title>Product Catalog - Shree Shyam Enterprises</title>
   
-  <meta name="description" content="Browse our complete catalog of Groceries, Snacks, Drinks, Biscuits, Stationery, Photo Printing, and Household items at Shree Shyam Enterprises, Barkagaon Devriya Road.">
+  <meta name="description" content="Explore groceries, snacks, cold drinks, stationery, and printing services at Shree Shyam Enterprises, Barkagaon Devriya Road, Muzaffarpur.">
   <link rel="canonical" href="https://shreeshyamenterprises.com/products.html">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="css/variables.css">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/responsive.css">
-  <link rel="stylesheet" href="css/animations.css">
-
-  <style>
-    .pill-btn {
-      padding: 0.5rem 1.25rem;
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-full);
-      background: var(--bg-card);
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      font-weight: 600;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all var(--transition-fast);
-    }
-    .pill-btn.active, .pill-btn:hover {
-      background: var(--primary-blue-light);
-      color: #FFF;
-      border-color: var(--primary-blue-light);
-    }
-    .pills-scroll-wrap {
-      display: flex;
-      gap: 0.75rem;
-      overflow-x: auto;
-      padding-bottom: 0.5rem;
-      margin-bottom: 2rem;
-      scrollbar-width: thin;
-    }
-  </style>
+  <link rel="stylesheet" href="css/variables.css?v=3.0">
+  <link rel="stylesheet" href="css/style.css?v=3.0">
+  <link rel="stylesheet" href="css/responsive.css?v=3.0">
+  <link rel="stylesheet" href="css/animations.css?v=3.0">
 </head>
 <body>
 
@@ -48,18 +20,18 @@
   <div class="top-bar">
     <div class="container top-bar-container">
       <div class="top-info">
-        <span><i class="fas fa-map-marker-alt"></i> Store: Barkagaon Devriya Road (In front of Tiwari Niwash Bhawan)</span>
-        <span><i class="fas fa-phone-alt"></i> Call Store: <a href="tel:7352383419">7352383419</a></span>
-        <span><i class="fas fa-certificate"></i> MSME Govt Reg: UDYAM-BR-23-0126667</span>
+        <span><i class="fas fa-map-marker-alt"></i> Store: Barkagaon Devriya Road</span>
+        <span><i class="fas fa-phone-alt"></i> <a href="tel:7352383419">7352383419</a></span>
+        <span><i class="fas fa-certificate"></i> MSME Reg: UDYAM-BR-23-0126667</span>
       </div>
-      <div class="top-actions" style="display:flex; gap:1rem; align-items:center;">
-        <span class="font-hindi" style="color: var(--accent-gold-light); font-weight:700;">आपकी जरूरत, हमारा वादा</span>
-        <a href="admin.html" style="background:rgba(245,158,11,0.25); color:var(--accent-gold-light); padding:0.25rem 0.75rem; border-radius:var(--radius-sm); font-weight:700; font-size:0.8rem;"><i class="fas fa-lock"></i> Admin Panel</a>
+      <div class="top-actions">
+        <button onclick="triggerAppInstall()" style="background:var(--accent-gold); color:#000; padding:0.2rem 0.6rem; border-radius:var(--radius-sm); font-weight:800; font-size:0.8rem; border:none; cursor:pointer;"><i class="fas fa-download"></i> Install App</button>
+        <a href="admin.html" style="color:var(--accent-gold-light); font-weight:700;"><i class="fas fa-lock"></i> Admin Panel</a>
       </div>
     </div>
   </div>
 
-  <!-- Navbar -->
+  <!-- Header -->
   <header class="navbar">
     <div class="container nav-container">
       <a href="index.html" class="logo-brand">
@@ -70,10 +42,11 @@
         </div>
       </a>
 
+      <!-- Search Bar -->
       <div class="nav-search">
         <div class="search-input-wrap">
-          <input type="text" id="header-search-input" placeholder="Search groceries, snacks, stationery..." autocomplete="off">
-          <button class="search-btn" aria-label="Search"><i class="fas fa-search"></i></button>
+          <input type="text" id="header-search-input" placeholder="Search products..." autocomplete="off">
+          <button class="search-btn"><i class="fas fa-search"></i></button>
         </div>
         <div id="header-search-results" class="search-results-dropdown"></div>
       </div>
@@ -81,7 +54,6 @@
       <nav id="nav-links" class="nav-links">
         <a href="index.html" class="nav-link">Home</a>
         <a href="products.html" class="nav-link active">Products</a>
-        <a href="rashan.html" class="nav-link" style="color:var(--accent-gold);"><i class="fas fa-scroll"></i> Rashan Generator</a>
         <a href="services.html" class="nav-link">Services & LIC</a>
         <a href="about.html" class="nav-link">About Us</a>
         <a href="gallery.html" class="nav-link">Gallery</a>
@@ -90,98 +62,63 @@
       </nav>
 
       <div class="nav-controls">
-        <button id="theme-toggle-btn" class="icon-btn" aria-label="Toggle Theme"><i class="fas fa-moon"></i></button>
-        <button id="cart-icon-btn" class="icon-btn" aria-label="View Cart">
+        <button id="theme-toggle-btn" class="icon-btn"><i class="fas fa-moon"></i></button>
+        <button id="cart-icon-btn" class="icon-btn">
           <i class="fas fa-shopping-cart"></i>
           <span class="cart-badge">0</span>
         </button>
-        <button id="hamburger-btn" class="hamburger-btn" aria-label="Open Mobile Menu"><i class="fas fa-bars"></i></button>
+        <button id="hamburger-btn" class="hamburger-btn"><i class="fas fa-bars"></i></button>
       </div>
     </div>
   </header>
 
-  <!-- Page Header -->
-  <section style="background: linear-gradient(135deg, var(--primary-blue-dark), var(--primary-blue)); color:#FFF; padding: 3rem 0;">
-    <div class="container text-center">
-      <h1 style="font-family:var(--font-poppins); font-size:2.5rem; font-weight:800;">Our Complete Catalog</h1>
-      <p style="color:#E2E8F0; font-size:1.1rem; max-width:600px; margin:0.5rem auto 0 auto;">Shop groceries, beverages, snacks, stationery, and digital services with instant WhatsApp ordering.</p>
+  <!-- Page Banner -->
+  <div style="background: linear-gradient(135deg, var(--primary-blue-dark), #0B1329); color:#FFF; padding: 3rem 0; text-align:center;">
+    <div class="container">
+      <h1 style="font-family:var(--font-poppins); font-size:2.2rem; font-weight:800;">Our Products Catalog</h1>
+      <p style="color:var(--accent-gold-light); font-size:1.1rem; margin-top:0.5rem;" class="font-hindi">"आपकी जरूरत, हमारा वादा"</p>
     </div>
-  </section>
+  </div>
 
-  <!-- Products Catalog Section -->
-  <section class="section-padding" style="background:var(--bg-primary);">
+  <!-- Products Main Layout -->
+  <main class="section-padding" style="background:var(--bg-primary);">
     <div class="container">
       
-      <!-- Category Pills Horizontal Bar -->
-      <div id="category-pills-container" class="pills-scroll-wrap">
-        <!-- Rendered by filter.js -->
-      </div>
-
-      <!-- Controls & Filter Bar with Voice Mic -->
-      <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1.25rem; margin-bottom:2rem; display:flex; flex-wrap:wrap; gap:1.5rem; align-items:center; justify-content:space-between;">
+      <div style="display:grid; grid-template-columns: 260px 1fr; gap:2rem;">
         
-        <div style="flex:1; min-width:250px;" class="search-input-wrap">
-          <input type="text" id="catalog-search-input" placeholder="Filter by name or brand (or click mic to speak)..." style="width:100%; padding:0.6rem 1rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main);">
-        </div>
+        <!-- Filter Sidebar -->
+        <aside style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:1.5rem; height:fit-content;">
+          <h3 style="font-size:1.2rem; font-weight:800; margin-bottom:1rem; border-bottom:1px solid var(--border-color); padding-bottom:0.5rem;"><i class="fas fa-filter"></i> Categories</h3>
+          
+          <div id="category-filters-list" style="display:flex; flex-direction:column; gap:0.5rem;">
+            <!-- Category links rendered by JS -->
+          </div>
 
-        <div style="display:flex; align-items:center; gap:0.75rem; min-width:220px;">
-          <label style="font-size:0.85rem; font-weight:700;">Max Price:</label>
-          <input type="range" id="price-range-input" min="10" max="1000" step="10" value="1000" style="flex:1;">
-          <span id="price-range-val" style="font-weight:700; color:var(--primary-blue-light); font-size:0.9rem;">₹1000</span>
-        </div>
-
-        <div style="display:flex; align-items:center; gap:0.75rem;">
-          <label style="font-size:0.85rem; font-weight:700;">Sort By:</label>
-          <select id="sort-select" style="padding:0.6rem 1rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main); font-weight:600; cursor:pointer;">
-            <option value="featured">Featured / Best Match</option>
+          <h3 style="font-size:1.2rem; font-weight:800; margin:1.5rem 0 1rem 0; border-bottom:1px solid var(--border-color); padding-bottom:0.5rem;"><i class="fas fa-sort"></i> Sort By</h3>
+          <select id="sort-products-select" style="width:100%; padding:0.6rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:var(--bg-tertiary); color:var(--text-main); font-weight:600;">
+            <option value="featured">Featured First</option>
             <option value="price-low">Price: Low to High</option>
             <option value="price-high">Price: High to Low</option>
-            <option value="rating">Highest Rated</option>
-            <option value="newest">Newest Additions</option>
+            <option value="name">Name A-Z</option>
           </select>
+        </aside>
+
+        <!-- Product Grid Display -->
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+            <div id="products-count-label" style="font-weight:700; color:var(--text-muted);">Showing Products</div>
+            <input type="text" id="catalog-search-input" placeholder="Filter category..." style="padding:0.5rem 1rem; border:1px solid var(--border-color); border-radius:var(--radius-md); background:var(--bg-tertiary); color:var(--text-main);">
+          </div>
+
+          <div id="catalog-products-grid" class="products-grid">
+            <!-- Rendered by JS -->
+          </div>
         </div>
 
-        <button class="btn btn-outline btn-sm" onclick="resetCatalogFilters()"><i class="fas fa-undo"></i> Reset Filters</button>
       </div>
 
-      <!-- Result Counter -->
-      <div style="margin-bottom:1.5rem; display:flex; justify-content:space-between; align-items:center;">
-        <span id="catalog-results-count" style="font-weight:700; color:var(--text-muted); font-size:0.95rem;">Showing products...</span>
-      </div>
-
-      <!-- Products Grid -->
-      <div id="catalog-products-grid" class="products-grid">
-        <!-- Products populated by filter.js -->
-      </div>
     </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container text-center">
-      <p>&copy; 2026 Shree Shyam Enterprises. Barkagaon Devriya Road, Muzaffarpur. All Rights Reserved.</p>
-    </div>
-  </footer>
-
-  <!-- Slide Cart Drawer -->
-  <div id="cart-drawer-overlay" class="cart-drawer-overlay"></div>
-  <aside id="cart-drawer" class="cart-drawer">
-    <div class="cart-drawer-header">
-      <h3><i class="fas fa-shopping-basket" style="color:var(--primary-blue-light);"></i> Your Shopping Cart</h3>
-      <button id="close-drawer-btn" class="close-drawer-btn" aria-label="Close Cart"><i class="fas fa-times"></i></button>
-    </div>
-    <div id="cart-drawer-items" class="cart-drawer-body"></div>
-    <div class="cart-drawer-footer">
-      <div class="cart-summary-row cart-summary-total">
-        <span>Subtotal Amount:</span>
-        <span id="cart-drawer-subtotal">₹0</span>
-      </div>
-      <div class="cart-drawer-actions">
-        <a href="cart.html" class="btn btn-outline">View Full Cart</a>
-        <a href="checkout.html" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> Checkout</a>
-      </div>
-    </div>
-  </aside>
+  </main>
 
   <!-- Mobile Bottom App Nav Bar -->
   <div class="mobile-bottom-nav">
@@ -193,10 +130,10 @@
       <i class="fas fa-store"></i>
       <span>Products</span>
     </a>
-    <a href="rashan.html" class="mobile-nav-item">
-      <i class="fas fa-scroll"></i>
-      <span>Rashan</span>
-    </a>
+    <button onclick="triggerAppInstall()" class="mobile-nav-item" style="background:transparent; border:none; cursor:pointer;">
+      <i class="fas fa-mobile-screen-button" style="color:var(--accent-gold);"></i>
+      <span style="color:var(--accent-gold);">Install App</span>
+    </button>
     <a href="services.html" class="mobile-nav-item">
       <i class="fas fa-print"></i>
       <span>Print Desk</span>
@@ -207,11 +144,76 @@
     </a>
   </div>
 
-  <script src="js/main.js"></script>
-  <script src="js/cart.js"></script>
-  <script src="js/products.js"></script>
-  <script src="js/filter.js"></script>
-  <script src="js/search.js"></script>
-  <script src="js/voice-search.js"></script>
+  <script src="js/main.js?v=3.0"></script>
+  <script src="js/cart.js?v=3.0"></script>
+  <script src="js/products.js?v=3.0"></script>
+  <script src="js/search.js?v=3.0"></script>
+  <script src="js/voice-search.js?v=3.0"></script>
+  <script src="js/app-installer.js?v=3.0"></script>
+
+  <script>
+    let catalogProducts = [];
+    let currentCategory = 'all';
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      currentCategory = urlParams.get('category') || 'all';
+
+      const { products, categories } = await loadProductData();
+      catalogProducts = products;
+
+      // Render category filter links
+      const catList = document.getElementById('category-filters-list');
+      if (catList) {
+        catList.innerHTML = `
+          <button onclick="filterByCategory('all')" class="btn btn-sm ${currentCategory === 'all' ? 'btn-primary' : 'btn-outline'}" style="justify-content:flex-start;">All Products</button>
+          ${categories.map(c => `
+            <button onclick="filterByCategory('${c.id}')" class="btn btn-sm ${currentCategory === c.id ? 'btn-primary' : 'btn-outline'}" style="justify-content:flex-start;"><i class="${c.icon}"></i> ${c.name}</button>
+          `).join('')}
+        `;
+      }
+
+      renderCatalogGrid();
+
+      document.getElementById('sort-products-select')?.addEventListener('change', renderCatalogGrid);
+      document.getElementById('catalog-search-input')?.addEventListener('input', renderCatalogGrid);
+    });
+
+    function filterByCategory(catId) {
+      currentCategory = catId;
+      document.querySelectorAll('#category-filters-list button').forEach(btn => {
+        btn.classList.remove('btn-primary');
+        btn.classList.add('btn-outline');
+      });
+      renderCatalogGrid();
+    }
+
+    function renderCatalogGrid() {
+      const grid = document.getElementById('catalog-products-grid');
+      const countLabel = document.getElementById('products-count-label');
+      const searchVal = (document.getElementById('catalog-search-input')?.value || '').toLowerCase().trim();
+      const sortVal = document.getElementById('sort-products-select')?.value || 'featured';
+
+      let filtered = catalogProducts.filter(p => {
+        if (currentCategory !== 'all' && p.category !== currentCategory) return false;
+        if (searchVal && !p.name.toLowerCase().includes(searchVal)) return false;
+        return true;
+      });
+
+      if (sortVal === 'price-low') filtered.sort((a, b) => a.price - b.price);
+      else if (sortVal === 'price-high') filtered.sort((a, b) => b.price - a.price);
+      else if (sortVal === 'name') filtered.sort((a, b) => a.name.localeCompare(b.name));
+
+      if (countLabel) countLabel.textContent = `Showing ${filtered.length} Products`;
+
+      if (grid) {
+        if (filtered.length === 0) {
+          grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:3rem; color:var(--text-muted);">No products found in this category.</div>`;
+        } else {
+          grid.innerHTML = filtered.map(createProductCardHTML).join('');
+        }
+      }
+    }
+  </script>
 </body>
 </html>

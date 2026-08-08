@@ -288,7 +288,6 @@ function deleteProduct(productId) {
   }
 }
 
-// 1-Click Export JSON File for Backup/Deployment
 function exportUpdatedJson() {
   const jsonStr = JSON.stringify(adminProducts, null, 2);
   const blob = new Blob([jsonStr], { type: 'application/json' });
@@ -303,7 +302,6 @@ function exportUpdatedJson() {
   showToast('products.json Exported! Replace data/products.json to save permanently.', 'success');
 }
 
-// Import products.json Backup File to preserve all listing data
 function importJsonProductsFile(event) {
   const file = event.target.files[0];
   if (!file) return;
@@ -337,7 +335,7 @@ function importJsonProductsFile(event) {
 }
 
 /* --------------------------------------------------------------------------
-   OKCREDIT KHATA TAB LOGIC
+   OKCREDIT KHATA TAB LOGIC & ADVANCED CONTROLS
    -------------------------------------------------------------------------- */
 let selectedKhataCustId = null;
 
@@ -357,10 +355,14 @@ function renderKhataTab() {
     const summary = KhataEngine.getCustomerSummary(c.id);
     const isDue = summary.netDue > 0;
     return `
-      <div onclick="selectKhataCustomer('${c.id}')" style="display:flex; align-items:center; gap:0.75rem; padding:0.85rem; border-bottom:1px solid var(--border-color); cursor:pointer; background:${selectedKhataCustId === c.id ? 'var(--primary-blue-light)' : 'transparent'}; color:${selectedKhataCustId === c.id ? '#FFF' : 'inherit'}; border-radius:var(--radius-sm);">
+      <div onclick="selectKhataCustomer('${c.id}')" style="display:flex; align-items:center; gap:0.75rem; padding:0.85rem; border-bottom:1px solid var(--border-color); cursor:pointer; background:${selectedKhataCustId === c.id ? 'var(--primary-blue-light)' : 'transparent'}; color:${selectedKhataCustId === c.id ? '#FFF' : 'inherit'}; border-radius:var(--radius-sm); position:relative;">
         <img src="${c.avatar}" style="width:45px; height:45px; border-radius:50%; object-fit:cover; border:1px solid var(--border-color);">
         <div style="flex:1;">
-          <strong style="display:block; font-size:0.95rem;">${c.name}</strong>
+          <div style="display:flex; align-items:center; gap:0.3rem;">
+            <strong style="font-size:0.95rem;">${c.name}</strong>
+            ${c.isDefaulter ? `<span class="badge badge-discount" style="font-size:0.65rem; padding:0.1rem 0.3rem;">Defaulter</span>` : ''}
+            ${c.isBlocked ? `<span class="badge" style="background:#64748B; color:#FFF; font-size:0.65rem; padding:0.1rem 0.3rem;">Blocked</span>` : ''}
+          </div>
           <span style="font-size:0.8rem; opacity:0.8;">${c.mobile}</span>
         </div>
         <div style="text-align:right;">
@@ -395,19 +397,46 @@ function renderKhataCustomerDetails(id) {
   const summary = KhataEngine.getCustomerSummary(id);
   const txs = KhataEngine.getTransactions().filter(t => t.customerId === id);
   const waUrl = KhataEngine.generateWhatsAppReminderLink(id);
+  const waDefaulterUrl = KhataEngine.generateWhatsAppDefaulterNoticeLink(id);
 
   container.innerHTML = `
     <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:1.5rem;">
+      
+      <!-- Customer Info Header & Status Badges -->
       <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-color); padding-bottom:1rem; margin-bottom:1.25rem; flex-wrap:wrap; gap:1rem;">
         <div style="display:flex; align-items:center; gap:1rem;">
-          <img src="${cust.avatar}" style="width:60px; height:60px; border-radius:50%; object-fit:cover; border:2px solid var(--primary-blue-light);">
+          <img src="${cust.avatar}" style="width:65px; height:65px; border-radius:50%; object-fit:cover; border:2px solid var(--primary-blue-light);">
           <div>
-            <h3 style="font-size:1.3rem; font-weight:800;">${cust.name}</h3>
+            <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+              <h3 style="font-size:1.3rem; font-weight:800;">${cust.name}</h3>
+              ${cust.isDefaulter ? `<span class="badge badge-discount"><i class="fas fa-exclamation-triangle"></i> DEFAULTER (डिफॉल्टर)</span>` : ''}
+              ${cust.isBlocked ? `<span class="badge" style="background:#64748B; color:#FFF;"><i class="fas fa-ban"></i> BLOCKED (खाता बंद)</span>` : ''}
+            </div>
             <span style="font-size:0.85rem; color:var(--text-muted);"><i class="fas fa-phone-alt"></i> ${cust.mobile} • ${cust.address || 'Barkagaon'}</span>
+            ${cust.dueDate ? `<div style="font-size:0.8rem; font-weight:700; color:var(--accent-gold); margin-top:0.2rem;"><i class="fas fa-calendar-alt"></i> Payment Due Date: ${cust.dueDate}</div>` : ''}
           </div>
         </div>
 
-        <a href="${waUrl}" target="_blank" class="btn btn-whatsapp btn-sm"><i class="fab fa-whatsapp"></i> Send WhatsApp Bill & Reminder</a>
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+          <a href="${waUrl}" target="_blank" class="btn btn-whatsapp btn-sm"><i class="fab fa-whatsapp"></i> Bill Statement</a>
+          ${cust.isDefaulter ? `<a href="${waDefaulterUrl}" target="_blank" class="btn btn-sm" style="background:var(--danger-red); color:#FFF;"><i class="fas fa-exclamation-circle"></i> Send Defaulter Notice</a>` : ''}
+        </div>
+      </div>
+
+      <!-- Advanced Khatabook Management Action Buttons -->
+      <div style="background:var(--bg-tertiary); padding:0.75rem 1rem; border-radius:var(--radius-md); margin-bottom:1.25rem; display:flex; gap:0.75rem; flex-wrap:wrap; align-items:center; justify-content:space-between;">
+        <span style="font-weight:700; font-size:0.85rem; color:var(--text-muted);">Customer Controls:</span>
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+          <button class="btn btn-outline btn-sm" onclick="toggleDefaulterStatus('${cust.id}')">
+            <i class="fas fa-user-slash" style="color:var(--danger-red);"></i> ${cust.isDefaulter ? 'Remove Defaulter Tag' : 'Mark as Defaulter (🔴)'}
+          </button>
+          <button class="btn btn-outline btn-sm" onclick="toggleBlockCustomerStatus('${cust.id}')">
+            <i class="fas fa-ban" style="color:#64748B;"></i> ${cust.isBlocked ? 'Unblock Account' : 'Block Account (🚫)'}
+          </button>
+          <button class="btn btn-sm" style="background:var(--danger-red); color:#FFF;" onclick="deleteKhataCustomer('${cust.id}')">
+            <i class="fas fa-trash-alt"></i> Delete Customer
+          </button>
+        </div>
       </div>
 
       <!-- Net Balance Cards -->
@@ -460,6 +489,28 @@ function renderKhataCustomerDetails(id) {
   `;
 }
 
+function toggleDefaulterStatus(id) {
+  KhataEngine.toggleDefaulter(id);
+  showToast('Defaulter Status Updated!', 'info');
+  renderKhataTab();
+}
+
+function toggleBlockCustomerStatus(id) {
+  KhataEngine.toggleBlock(id);
+  showToast('Customer Block Status Updated!', 'info');
+  renderKhataTab();
+}
+
+function deleteKhataCustomer(id) {
+  if (confirm('Are you sure you want to delete this customer and all their ledger history?')) {
+    KhataEngine.deleteCustomer(id);
+    selectedKhataCustId = null;
+    showToast('Khata Customer Deleted!', 'info');
+    renderKhataTab();
+    renderAdminMetrics();
+  }
+}
+
 function openAddCustomerModal() {
   document.getElementById('add-cust-modal').classList.add('active');
 }
@@ -473,13 +524,14 @@ function saveNewKhataCustomer(e) {
   const mobile = document.getElementById('khata-cust-mobile').value.trim();
   const address = document.getElementById('khata-cust-address').value.trim();
   const limit = document.getElementById('khata-cust-limit').value || 5000;
+  const dueDate = document.getElementById('khata-cust-duedate')?.value || '';
 
   if (!name || !mobile) {
     showToast('Customer Name and Mobile number are required!', 'danger');
     return;
   }
 
-  const newCust = KhataEngine.addCustomer(name, mobile, address, limit);
+  const newCust = KhataEngine.addCustomer(name, mobile, address, limit, dueDate);
   selectedKhataCustId = newCust.id;
   showToast('New Khata Customer Added!', 'success');
   closeAddCustomerModal();
@@ -513,11 +565,13 @@ function saveKhataTransaction(e) {
     return;
   }
 
-  KhataEngine.addTransaction(activeTxCustId, activeTxType, amount, note);
-  showToast(activeTxType === 'udhar' ? 'Udhar Recorded!' : 'Payment Jama Recorded!', 'success');
-  closeKhataTxModal();
-  renderKhataTab();
-  renderAdminMetrics();
+  const res = KhataEngine.addTransaction(activeTxCustId, activeTxType, amount, note);
+  if (res) {
+    showToast(activeTxType === 'udhar' ? 'Udhar Recorded!' : 'Payment Jama Recorded!', 'success');
+    closeKhataTxModal();
+    renderKhataTab();
+    renderAdminMetrics();
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -592,6 +646,9 @@ window.openAddCustomerModal = openAddCustomerModal;
 window.closeAddCustomerModal = closeAddCustomerModal;
 window.saveNewKhataCustomer = saveNewKhataCustomer;
 window.selectKhataCustomer = selectKhataCustomer;
+window.toggleDefaulterStatus = toggleDefaulterStatus;
+window.toggleBlockCustomerStatus = toggleBlockCustomerStatus;
+window.deleteKhataCustomer = deleteKhataCustomer;
 window.openKhataTransactionModal = openKhataTransactionModal;
 window.closeKhataTxModal = closeKhataTxModal;
 window.saveKhataTransaction = saveKhataTransaction;
